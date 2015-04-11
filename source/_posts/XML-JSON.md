@@ -156,8 +156,8 @@ Douglas Crockford发明了JSON，Json的规定非常简单
 	]
 	
 `介绍JSON格式定义：` `rfc-4627`
-[介绍JSON](www.json.org/json-zh.htm)
-[JSON格式化工具](www.sojson.com)
+[介绍JSON](http://www.json.org/json-zh.htm)
+[JSON格式化工具](http://www.sojson.com)
 
 ####NSJSONSerialization
 
