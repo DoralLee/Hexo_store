@@ -1,6 +1,6 @@
 title: "iOS学习-Quartz2D使用"
 date: 2015-03-31 21:29:47
-tags:
+tags: Quartz2D使用
 ---
 ###一、什么是Quartz2D?
 1. Quartz2D是一个二维绘图引擎，同时支持IOS和Mac系统,基于路径的绘制
