@@ -5,7 +5,7 @@ tags: Hexo——搭建博客
 
 ###本地搭建hexo
 
-1. 安装nvm(node.js的版本管理工具）
+1. 安装nvm(node.js的版本管理工具）以下提供两种安装方法
 	- cURL：
 	
 	```
