@@ -27,6 +27,8 @@ tags: Hexo——搭建博客
 	```
 	[ -s "/Users/`users`/.nvm/nvm.sh" ] && . "/Users/`users`/.nvm/nvm.sh" # This loads nvm
 	```
+	`注意：`“users”修改为你的家目录名
+	
 4. 将nvm的bin目录添加到环境变量中
 
 	```
