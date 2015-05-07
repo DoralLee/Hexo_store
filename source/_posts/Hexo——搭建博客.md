@@ -1,6 +1,6 @@
 title: "Hexo——搭建博客"
 date: 2015-03-10 23:43:59
-tags: Hexo——搭建博客
+tags: Hexo
 ---
 
 ###本地搭建hexo
