@@ -80,41 +80,129 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/30/迎着缺陷奔跑/" title="迎着缺陷奔跑" itemprop="url">迎着缺陷奔跑</a>
+      <a href="/2015/03/14/XML-JSON/" title="XML&amp;JSON" itemprop="url">XML&amp;JSON</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-30T01:55:14.000Z" itemprop="datePublished"> 发表于 2015-04-30</time>
+    <time datetime="2015-03-14T05:15:27.000Z" itemprop="datePublished"> 发表于 2015-03-14</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <pre><code>他是一个严重晕车的弄明，一上车，就会吐得一塌糊涂。连骑自行车，他也会恶心难受。他很少出门，连十多里外的小镇也很少去。如果把这个社会比作一辆车，那么“交通”和“信息”就是这个社会的两个轮子，而他的人生因为远离了“交通”，就像缺了一个轮子，他跑步起来了。
-
-同龄人纷纷外出打工，很快赚回了真金白银，造起了新房，娶了妻子，生了孩子，其乐融融。而他只能承包了一些天地，种水稻，种小麦，种西瓜，种花生……勉强维持生计。年轻的姑娘很现实，看他造不起新房，连乘车出趟远门都可能吐得要了他的命，没有人愿意嫁给他。
-
-后来农闲的时候，村里人经常看到他跑到车站，尝试着乘车，乘一小段就会要求司机停车，然后蹲在地上吐一会儿。吐完了，再登下一班车来，然后又是乘一段，下车吐一会儿，如此循环。
-
-为了治自己的病，他徒步走到县医院、省医院，但没有一点效果。他又买了许多医药书，自己琢磨。阅读大量医书后，他终于明白，晕车是由于人的前庭系统太敏感引起的，如果要减轻晕车，唯一的办法就是抑制前庭系统的兴奋水平。
-
-三十岁那年，他对年迈的父母说，自己准备去学车。大家都反对，这样一个一上车就会呕吐的人，怎么可能？但他坚持。
-
-家人帮他找了一位教练，事先告诉教练他得情况。教练答应了老人，但他“一上车就吐”的症状还是让教练接受不了。于是，他每天上车前基本不吃东西，只喝一些盐水，这样肠胃里就没有什么可吐的了。神奇的是，症状竟然慢慢在减轻。他觉得自己的坚持是对的，满满的，他可以连续驾驶半个小时，身体也没有什么症状了。
-
-他拿到驾照后，借了不少钱，买了一辆二手的就卡车，跑起了运输，赚下了人生第一桶金，他也造起了房子娶了妻子。后来妻子因为他经常跑长途很担心，他索性卖掉了货车，举债到城里买了一辆出租车。现在他每天又8小时在出租车上，从来不会晕车了。
-
-有一天，这位司机与我一起吃放，说起他的故事，他说自己是一个“神医”，自己医好了自己的病。我不明白，当年他怎么知道开车可以医好晕车症呢？
-
-他说，有一次看二战片，片中有个场景：一艘太平洋上的战舰上，士兵们因为风浪太大晕船，此时，战舰雷达上捕获到前面有敌舰，敌舰武器装备精良。舰长知道士兵们因为晕船几无战斗力了，大家的命运凶多吉少。警报发出后，士兵们全部进入战斗位，集中火力射向战舰，鏖战一个小时候，敌舰仓皇而逃。而让人惊奇的是，所有士兵都没有了晕船症状。
-
-如果当年他没有去“啃”那些难懂的医药书，如果他没有看到这部片子，如果他没有不肯低头的勇气，他现在又将身处那种情景？
-
-上苍想来不会垂青一个弱者。幸运的是，他没有听从命运的安排，面对缺陷，不是逃避，而是面对，并且迎着缺陷奔跑，把可能毁掉他人生的“缺陷”狠狠地打倒在地，终于逆势起飞了。
-</code></pre>
+        <h3 id="XML">XML</h3><h4 id="SAX解析">SAX解析</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// <span class="number">1</span>. 获取<span class="type">XML</span>文件的<span class="type">URL</span></span><br><span class="line"><span class="type">NSURL</span> *fileURL = [[<span class="type">NSBundle</span> mainBundle] <span class="type">URLForResource</span>:@<span class="string">"bookstore"</span> withExtension:@<span class="string">"xml"</span>];</span><br><span class="line"></span><br><span class="line">// <span class="number">2</span>. 创建xml解析器对象</span><br><span class="line"><span class="type">NSXMLParser</span> *xmlParser = [[<span class="type">NSXMLParser</span> alloc] initWithContentsOfURL:fileURL];</span><br><span class="line"></span><br><span class="line">// <span class="number">3</span>. 设置代理</span><br><span class="line">xmlParser.delegate = self;</span><br><span class="line"></span><br><span class="line">// <span class="number">4</span>. 开始解析</span><br><span class="line"><span class="type">BOOL</span> <span class="literal">result</span> = [xmlParser parse];</span><br><span class="line"><span class="keyword">if</span> (!<span class="literal">result</span>) &#123;</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"xmlParser parse error!"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>NSXMLperser对象代理方法： </p>
+<ul>
+<li><p>- (void)parserDidStartDocument:(NSXMLParser *)parser</p>
+<blockquote>
+<p>当开始解析XML文档的时候，调用这个方法。通常在这个方法里，<code>创建存储模型对象的数组</code></p>
+</blockquote>
+</li>
+<li><p>- (void)parser:(NSXMLParser )parser didStartElement:(NSString )elementName namespaceURI:(NSString )namespaceURI qualifiedName:(NSString )qName attributes:(NSDictionary *)attributeDict</p>
+<blockquote>
+<p>当开始解析，遇到语速标签的时候，调用这个方法。通常在这个方法里，<code>创建模型对象或解析标签中的属性保存在模型对象中</code></p>
+</blockquote>
+</li>
+<li><p>- (void)parser:(NSXMLParser )parser foundCharacters:(NSString )string</p>
+<blockquote>
+<p>当解析到xml标签的文本内容的时候，调用这个方法，通常在这里先<code>暂存解析到的内容文本内容</code></p>
+</blockquote>
+</li>
+<li><p>- (void)parser:(NSXMLParser )parser didEndElement:(NSString )elementName namespaceURI:(NSString )namespaceURI qualifiedName:(NSString )qName</p>
+<blockquote>
+<p>当解析xml内容遇到结束标签的时候，调用这个方法。通常在这个方法里，<code>需要将模型对象保存入数组中或把标签对应的文本内容解析出来，保存在模型对象中（KVC）</code></p>
+</blockquote>
+</li>
+<li><p>- (void)parserDidEndDocument:(NSXMLParser *)parser</p>
+<blockquote>
+<p>当整个xml文档全部解析结束的时候，该方法会调用</p>
+</blockquote>
+</li>
+<li><p>- (void)parser:(NSXMLParser )parser parseErrorOccurred:(NSError )parseError</p>
+<blockquote>
+<p>当遇到解析错误时，该方法会被调用</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="DOM解析（以GDataXMLNode为例）">DOM解析（以GDataXMLNode为例）</h3><h4 id="使用：">使用：</h4><p>添加头文件搜索路径：<code>Build Settings-&gt;Header Search Paths-&gt;&quot;/usr/include/libxml2&quot;</code><br>用非ARC的方式编译GDataXMLNode.m文件：<code>-fno-objc-arc</code><br>链接libxml2.dylib该动态库：<code>Build Phases-&gt;Link Binary With Libraries-&gt;“libxml2.dylib”</code></p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">*</span> <span class="variable">&lt;节点&gt;</span> (GDataXMLNode)</span><br><span class="line"> <span class="keyword">*</span> 根据DOM，XML文档中的每个成分都是一个节点。</span><br><span class="line"> <span class="keyword">*</span> DOM是这样规定的：</span><br><span class="line"> <span class="keyword">*</span> 整个文档是一个文档节点</span><br><span class="line"> <span class="keyword">*</span> 每个XML标签是一个元素节点</span><br><span class="line"> <span class="keyword">*</span> 包含在XML元素中的文本是文本节点</span><br><span class="line"> <span class="keyword">*</span> 每一个XML属性是一个属性节点</span><br><span class="line"> <span class="keyword">*</span> 注释属于注释节点</span><br><span class="line"> <span class="keyword">*</span>/</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>根据XML文件创建NSData对象</p>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建数组对象</span></span><br><span class="line">_bookstore = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 获取XML文件的URL</span></span><br><span class="line"><span class="built_in">NSURL</span> *fileURL = [[<span class="built_in">NSBundle</span> mainBundle] URLForResource:<span class="string">@"bookstore"</span> withExtension:<span class="string">@"xml"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 根据URL路径，将文件读取到内存中</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:fileURL];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据NSData对象创建GDataXMLDocument对象（即DOM模型对象），该对象在内存中是以树形结构存储的</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4. 创建DOM文件模型对象</span></span><br><span class="line">GDataXMLDocument *doc = [[GDataXMLDocument alloc] <span class="string">initWithData:</span>data <span class="string">options:</span><span class="number">0</span> <span class="string">error:</span>nil];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过DOM模型对象，取出XML文件的根元素</p>
+ <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 5. 取出xml DOM🌲中根元素</span></span><br><span class="line"><span class="constant">GDataXMLElement *rootElement</span> = [doc rootElement];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>由于是树形结构，所以可以根据子元素的名字使用根元素获取到所有子元素，兵类推获得子元素的子元素</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">NSArray *books = [rootElement <span class="string">elementsForName:</span>kBook];</span><br><span class="line"></span><br><span class="line">NSLog(@<span class="string">"%@"</span>, books);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (GDataXMLElement *element <span class="keyword">in</span> books) &#123;</span><br><span class="line">    <span class="comment">// 创建图书对象</span></span><br><span class="line">    QYBook *book = [[QYBook alloc] init];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 根据属性名字，解析出book中的属性值</span></span><br><span class="line">    book.category = [[element <span class="string">attributeForName:</span>kCategory] stringValue];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 解析title元素</span></span><br><span class="line">    GDataXMLElement * titleElement = [element <span class="string">elementsForName:</span>kTitle][<span class="number">0</span>];</span><br><span class="line">    book.lang = [[titleElement <span class="string">attributeForName:</span>kLang] stringValue];</span><br><span class="line">    book.title = [titleElement stringValue];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 解析author元素</span></span><br><span class="line">    GDataXMLElement *authorElement = [element <span class="string">elementsForName:</span>kAuthor][<span class="number">0</span>];</span><br><span class="line">    book.author = [authorElement stringValue];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 解析price元素</span></span><br><span class="line">    GDataXMLElement *priceElement = [element <span class="string">elementsForName:</span>kPrice][<span class="number">0</span>];</span><br><span class="line">    book.price = [priceElement stringValue];</span><br><span class="line">    [_bookstore <span class="string">addObject:</span>book];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="JSON">JSON</h3><p>从结构上看，所有的数据（data）最终都可以分解成三种类型：</p>
+<ul>
+<li>第一种类型是标量（scalar），也就是一个单独的字符创（string）或数字（numbers），比如“北京”这个单独的词</li>
+<li>第二种类型是序列（sequence），也就是若干个相关的数据按照一定顺序并列在一起，又叫做数组（array）或列表（List），比如“北京，上海”</li>
+<li>第三种类型是映射（mapping），也就是一个名/值对（Name/value），即数据有一个名称，还有一个与之相对应的值，这又称作散列（hash）活字典（dictionary），比如“首都:北京”</li>
+</ul>
+<p>Douglas Crockford发明了JSON，Json的规定非常简单</p>
+<pre><code><span class="bullet">1. </span>并列的数据之间用逗号（,）分隔
+<span class="bullet">2. </span>映射用冒号（:）表示
+<span class="bullet">3. </span>并列数据的集合（数组）用方括号（[]）表示
+<span class="bullet">4. </span>映射的集合（对象）用大括号（{}）表示
+</code></pre><p>比如，下面这句话：</p>
+<blockquote>
+<p>“北京市的面积为16800平方公里，常住人口1600万人。上海市的面积为6400平方公里，常住人口1800万。”</p>
+</blockquote>
+<p>写成JSON格式就是这样：</p>
+<pre><code>[
+    {"<span class="attribute">城市</span>":<span class="value"><span class="string">"北京"</span></span>,"<span class="attribute">面积</span>":<span class="value"><span class="number">16800</span></span>,"<span class="attribute">人口</span>":<span class="value"><span class="number">1600</span></span>},
+    {"<span class="attribute">城市</span>":<span class="value"><span class="string">"上海"</span></span>,"<span class="attribute">面积</span>":<span class="value"><span class="number">6400</span></span>,"<span class="attribute">人口</span>":<span class="value"><span class="number">1800</span></span>}
+]
+</code></pre><p>如果事先知道数据的结构，上面的写法还可以进一步简化：</p>
+<pre><code>[
+    [<span class="string">"北京"</span>,<span class="number">16800</span>,<span class="number">1600</span>],
+    [<span class="string">"上海"</span>,<span class="number">6400</span>,<span class="number">1800</span>]
+]
+</code></pre><p><code>介绍JSON格式定义：</code> <code>rfc-4627</code><br><a href="http://www.json.org/json-zh.htm" target="_blank" rel="external">介绍JSON</a><br><a href="http://www.sojson.com" target="_blank" rel="external">JSON格式化工具</a></p>
+<h4 id="NSJSONSerialization">NSJSONSerialization</h4><pre><code>+ (<span class="property">id</span>)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)opt <span class="keyword">error</span>:(NSError **)<span class="keyword">error</span>
++ (NSData *)dataWithJSONObject:(<span class="property">id</span>)obj options:(NSJSONWritingOptions)opt <span class="keyword">error</span>:(NSError **)<span class="keyword">error</span>
+</code></pre><h4 id="JSONKit">JSONKit</h4><p>使用：<code>-fno-objc-arc</code><br>序列化：<code>NSArray</code> <code>NSDictionary</code> <code>NSString</code></p>
+<pre><code>-<span class="ruby"> <span class="constant">JSONData</span>
+</span>-<span class="ruby"> <span class="constant">JSONDataWithOptions</span><span class="symbol">:includeQuotes</span><span class="symbol">:error</span><span class="symbol">:</span>
+</span>-<span class="ruby"> <span class="constant">JSONDataWithOptions</span><span class="symbol">:serializeUnsupportedClassesUsingDelegate</span><span class="symbol">:selector</span><span class="symbol">:error</span><span class="symbol">:</span>
+</span>-<span class="ruby"><span class="constant">JSONDataWithOptions</span><span class="symbol">:serializeUnsupportedClassesUsingBlock</span><span class="symbol">:error</span><span class="symbol">:</span>￼
+</span>
+-<span class="ruby"> <span class="constant">JSONString</span>
+</span>-<span class="ruby"> <span class="constant">JSONStringWithOptions</span><span class="symbol">:includeQuotes</span><span class="symbol">:error</span><span class="symbol">:</span>
+</span>-<span class="ruby"> <span class="constant">JSONStringWithOptions</span><span class="symbol">:serializeUnsupportedClassesUsingDelegate</span><span class="symbol">:selector</span><span class="symbol">:error</span><span class="symbol">:</span>
+</span>-<span class="ruby"> <span class="constant">JSONStringWithOptions</span><span class="symbol">:serializeUnsupportedClassesUsinBlock</span><span class="symbol">:error</span><span class="symbol">:</span></span>
+</code></pre><p>反序列化：<code>NSData</code> <code>NSString</code></p>
+<pre><code>-<span class="ruby"> objectFromJSONData
+</span>-<span class="ruby"> <span class="symbol">objectFromJSONDataWithParseOptions:</span>
+</span>-<span class="ruby"> <span class="symbol">objectFromJSONDataWithParseOptions:</span><span class="symbol">error:</span>
+</span>-<span class="ruby"> mutableObjectFromJSONData
+</span>-<span class="ruby"> <span class="symbol">mutableObjectFromJSONDataWithParseOptions:</span>
+</span>-<span class="ruby"> <span class="symbol">mubtableObjectFromJSONDataWithParseOptions:</span><span class="symbol">error:</span>
+</span>
+-<span class="ruby"> objectFromJSONString
+</span>-<span class="ruby"> <span class="symbol">objectFromJSONStringWithParseOptions:</span>
+</span>-<span class="ruby"> <span class="symbol">objectFromJSONStringWithParseOptions:</span><span class="symbol">error:</span>
+</span>-<span class="ruby"> mutableObjectFromJSONString
+</span>-<span class="ruby"> <span class="symbol">mutableObjectFromJSONStringWithParseOptions:</span>
+</span>-<span class="ruby"> <span class="symbol">mutableObjectFromJSONStringWithParseOptions:</span><span class="symbol">error:</span></span>
+</code></pre><h4 id="例子：">例子：</h4><ul>
+<li>要求：解析jsonData中的json数据</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    NSURL *url = [[NSBundle mainBundle] <span class="string">URLForResource:</span>@<span class="string">"JsonData"</span> <span class="string">withExtension:</span>@<span class="string">"json"</span>];</span><br><span class="line">    </span><br><span class="line">    NSData *data = [NSData <span class="string">dataWithContentsOfURL:</span>url];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// JSON解析 （反序列化）</span></span><br><span class="line">    id obj = [NSJSONSerialization <span class="string">JSONObjectWithData:</span>data <span class="string">options:</span>NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves|NSJSONReadingAllowFragments <span class="string">error:</span>nil];</span><br><span class="line">    <span class="keyword">if</span> ([obj <span class="string">isKindOfClass:</span>[NSMutableArray <span class="class"><span class="keyword">class</span>]]) &#123;</span></span><br><span class="line">        NSLog(@<span class="string">"Array!"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([obj <span class="string">isKindOfClass:</span>[NSMutableDictionary <span class="class"><span class="keyword">class</span>]]) &#123;</span></span><br><span class="line">        NSLog(@<span class="string">"Dictionary!"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        NSLog(@<span class="string">"Other!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@<span class="string">"%@"</span>, obj);</span><br><span class="line">    </span><br><span class="line">    NSLog(@<span class="string">"0's city:%@"</span>, [obj[<span class="number">0</span>] <span class="string">objectForKey:</span>@<span class="string">"City"</span>]);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建 JSON data （序列化）</span></span><br><span class="line">    NSData *jsonData = [NSJSONSerialization <span class="string">dataWithJSONObject:</span>obj <span class="string">options:</span>NSJSONWritingPrettyPrinted <span class="string">error:</span>nil];</span><br><span class="line">    </span><br><span class="line"><span class="comment">//    NSLog(@"%@", jsonData);</span></span><br><span class="line">    NSString *jsonStr = [[NSString alloc] <span class="string">initWithData:</span>jsonData <span class="string">encoding:</span>NSUTF8StringEncoding];</span><br><span class="line">    NSLog(@<span class="string">"jsonStr:%@"</span>, jsonStr);</span><br></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -127,7 +215,113 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/故事一则/">故事一则</a>
+  <span></span> <a href="/tags/XML-JSON/">XML&JSON</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/10/Hexo——搭建博客/" title="Hexo——搭建博客" itemprop="url">Hexo——搭建博客</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-10T15:43:59.000Z" itemprop="datePublished"> 发表于 2015-03-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="本地搭建hexo">本地搭建hexo</h3><ol>
+<li><p>安装nvm(node.js的版本管理工具）以下提供两种安装方法</p>
+<ul>
+<li><p>cURL：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>curl <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/creationix</span><span class="regexp">/nvm/v</span><span class="number">0</span>.<span class="number">24.1</span>/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Wget:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/creationix</span><span class="regexp">/nvm/v</span><span class="number">0</span>.<span class="number">24.1</span>/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>安装完成后，重启终端并执行下列命令安装Node.js</p>
+ <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="keyword">install</span> <span class="number">0.10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加如下内容到.zshrc配置文件</p>
+ <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ -s <span class="string">"/Users/<span class="escape">`u</span>sers<span class="escape">`/</span>.nvm/nvm.sh"</span> ] &amp;&amp; . <span class="string">"/Users/<span class="escape">`u</span>sers<span class="escape">`/</span>.nvm/nvm.sh"</span> # This loads nvm</span><br></pre></td></tr></table></figure>
+<p> <code>注意：</code>“users”修改为你的家目录名</p>
+</li>
+<li><p>将nvm的bin目录添加到环境变量中</p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">以zsh为例：</span><br><span class="line"><span class="number">1</span>. 打开zsh配置文件</span><br><span class="line">	vi ~/<span class="class">.zshrc</span></span><br><span class="line"><span class="number">2</span>. 添加如下内容到<span class="class">.zshrc</span></span><br><span class="line">	export PATH=<span class="variable">$PATH</span>:~/.nvm/v0.<span class="number">10.38</span>/bin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装hexo</p>
+ <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -<span class="keyword">g</span> hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建hexo文件夹，并安装hexo相关组件</p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init hexo</span><br><span class="line"><span class="variable">$ </span>cd hexo</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地查看<br> 输入如下命令后，打开浏览器，并输入<a href="http://0.0.0.0:4000/" target="_blank" rel="external">localhost:4000</a></p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署的时候有时候会失败，可以安装hexo-deployer-git来解决</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="部署到github">部署到github</h3><ol>
+<li><p>注册github账号</p>
+</li>
+<li><p>创建github账号同名repository</p>
+<pre><code>eg:github账号名为leelovcy，则创建leelovcy<span class="class">.github</span><span class="class">.io</span>
+</code></pre></li>
+<li><p>部署到github上</p>
+<p> 如下所示编辑_config.yml</p>
+<pre><code><span class="attribute">deploy</span>:
+  <span class="attribute">type</span>: git
+  <span class="attribute">repository</span>: <span class="attribute">http</span>:<span class="comment">//github.com/LeeLovCY/LeeLovCY.github.io.git</span>
+  <span class="attribute">branch</span>: master
+</code></pre><p> <code>注意：</code>上述冒号之后有空格</p>
+</li>
+<li><p>输入如下命令，完成到github得部署，之后打开浏览器并输入<leelovcy.github.io>来查看</leelovcy.github.io></p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo d</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
   </div>
 
 </div>
@@ -151,7 +345,7 @@
 
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 </div>
