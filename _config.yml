@@ -74,6 +74,10 @@ theme: jacman
 stylus:
     compress: true
 
+plugins:
+- hexo-generator-feed
+- hexo-generator-sitemap
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
