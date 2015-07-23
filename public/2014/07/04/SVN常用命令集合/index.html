@@ -4,43 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hexo——搭建博客 | Vodka&#39;s Blog</title>
+    <title>SVN常用命令集合 | Vodka&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Vodka">
     
 
     
-    <meta name="description" content="本地搭建hexo
-安装nvm(node.js的版本管理工具）以下提供两种安装方法
+    <meta name="description" content="SVN常用命令集
 
-cURL：
-1$ curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
-
-Wget:
-1$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/">
+svn info 查询svn根目录的信息，这个命令当你想知道某个svn目录是从哪个服务器上下来的时候特别有效svn add 增加一个文件到根目录里，注意要用svn commit上传这个修改svn status 查询当前目录下文件修改的情况，a表示增加，M表示修改svn diff 查看本目录下所有的文件有哪些区别，当然可以指定到文件名svn commit -m “fix bug”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo——搭建博客">
-<meta property="og:url" content="http://yoursite.com/2015/03/10/Hexo——搭建博客/index.html">
+<meta property="og:title" content="SVN常用命令集合">
+<meta property="og:url" content="http://yoursite.com/2014/07/04/SVN常用命令集合/index.html">
 <meta property="og:site_name" content="Vodka's Blog">
-<meta property="og:description" content="本地搭建hexo
-安装nvm(node.js的版本管理工具）以下提供两种安装方法
+<meta property="og:description" content="SVN常用命令集
 
-cURL：
-1$ curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
-
-Wget:
-1$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/">
+svn info 查询svn根目录的信息，这个命令当你想知道某个svn目录是从哪个服务器上下来的时候特别有效svn add 增加一个文件到根目录里，注意要用svn commit上传这个修改svn status 查询当前目录下文件修改的情况，a表示增加，M表示修改svn diff 查看本目录下所有的文件有哪些区别，当然可以指定到文件名svn commit -m “fix bug”">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo——搭建博客">
-<meta name="twitter:description" content="本地搭建hexo
-安装nvm(node.js的版本管理工具）以下提供两种安装方法
+<meta name="twitter:title" content="SVN常用命令集合">
+<meta name="twitter:description" content="SVN常用命令集
 
-cURL：
-1$ curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
-
-Wget:
-1$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/">
+svn info 查询svn根目录的信息，这个命令当你想知道某个svn目录是从哪个服务器上下来的时候特别有效svn add 增加一个文件到根目录里，注意要用svn commit上传这个修改svn status 查询当前目录下文件修改的情况，a表示增加，M表示修改svn diff 查看本目录下所有的文件有哪些区别，当然可以指定到文件名svn commit -m “fix bug”">
 
     
     <link rel="alternative" href="/atom.xml" title="Vodka&#39;s Blog" type="application/atom+xml">
@@ -99,14 +84,14 @@ Wget:
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/03/10/Hexo——搭建博客/" title="Hexo——搭建博客" itemprop="url">Hexo——搭建博客</a>
+      <a href="/2014/07/04/SVN常用命令集合/" title="SVN常用命令集合" itemprop="url">SVN常用命令集合</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-10T15:43:59.000Z" itemprop="datePublished"> 发表于 2015-03-10</time>
+    <time datetime="2014-07-04T01:16:36.000Z" itemprop="datePublished"> 发表于 2014-07-04</time>
     
   </p>
 </header>
@@ -115,60 +100,15 @@ Wget:
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#本地搭建hexo"><span class="toc-number">1.</span> <span class="toc-text">本地搭建hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署到github"><span class="toc-number">2.</span> <span class="toc-text">部署到github</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h3 id="本地搭建hexo">本地搭建hexo</h3><ol>
-<li><p>安装nvm(node.js的版本管理工具）以下提供两种安装方法</p>
-<ul>
-<li><p>cURL：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>curl <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/creationix</span><span class="regexp">/nvm/v</span><span class="number">0</span>.<span class="number">24.1</span>/install.sh | bash</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Wget:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/creationix</span><span class="regexp">/nvm/v</span><span class="number">0</span>.<span class="number">24.1</span>/install.sh | bash</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>安装完成后，重启终端并执行下列命令安装Node.js</p>
- <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="keyword">install</span> <span class="number">0.10</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加如下内容到.zshrc配置文件</p>
- <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ -s <span class="string">"/Users/<span class="escape">`u</span>sers<span class="escape">`/</span>.nvm/nvm.sh"</span> ] &amp;&amp; . <span class="string">"/Users/<span class="escape">`u</span>sers<span class="escape">`/</span>.nvm/nvm.sh"</span> # This loads nvm</span><br></pre></td></tr></table></figure>
-<p> <code>注意：</code>“users”修改为你的家目录名</p>
-</li>
-<li><p>将nvm的bin目录添加到环境变量中</p>
- <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">以zsh为例：</span><br><span class="line"><span class="number">1</span>. 打开zsh配置文件</span><br><span class="line">	vi ~/<span class="class">.zshrc</span></span><br><span class="line"><span class="number">2</span>. 添加如下内容到<span class="class">.zshrc</span></span><br><span class="line">	export PATH=<span class="variable">$PATH</span>:~/.nvm/v0.<span class="number">10.38</span>/bin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装hexo</p>
- <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -<span class="keyword">g</span> hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建hexo文件夹，并安装hexo相关组件</p>
- <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init hexo</span><br><span class="line"><span class="variable">$ </span>cd hexo</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本地查看<br> 输入如下命令后，打开浏览器，并输入<a href="http://0.0.0.0:4000/" target="_blank" rel="external">localhost:4000</a></p>
- <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署的时候有时候会失败，可以安装hexo-deployer-git来解决</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="部署到github">部署到github</h3><ol>
-<li><p>注册github账号</p>
-</li>
-<li><p>创建github账号同名repository</p>
-<pre><code>eg:github账号名为leelovcy，则创建leelovcy<span class="class">.github</span><span class="class">.io</span>
-</code></pre></li>
-<li><p>部署到github上</p>
-<p> 如下所示编辑_config.yml</p>
-<pre><code><span class="attribute">deploy</span>:
-  <span class="attribute">type</span>: git
-  <span class="attribute">repository</span>: <span class="attribute">http</span>:<span class="comment">//github.com/LeeLovCY/LeeLovCY.github.io.git</span>
-  <span class="attribute">branch</span>: master
-</code></pre><p> <code>注意：</code>上述冒号之后有空格</p>
-</li>
-<li><p>输入如下命令，完成到github得部署，之后打开浏览器并输入<leelovcy.github.io>来查看</leelovcy.github.io></p>
- <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo d</span><br></pre></td></tr></table></figure>
+		<ol>
+<li><p>SVN常用命令集</p>
+<blockquote>
+<p>svn info 查询svn根目录的信息，这个命令当你想知道某个svn目录是从哪个服务器上下来的时候特别有效<br>svn add 增加一个文件到根目录里，注意要用svn commit上传这个修改<br>svn status 查询当前目录下文件修改的情况，a表示增加，M表示修改<br>svn diff 查看本目录下所有的文件有哪些区别，当然可以指定到文件名<br>svn commit -m “fix bug” file上传某个文件的修改，并增加注释<br>svn ci 上传所有的修改，会提示你添加修改记录<br>svn log file 查询某个文件的修改记录<br>svn checkout 从svn服务器上去一个目录，带svn信息<br>svn export 从svn服务器上取出一个目录，仅源文件，没有讨厌的.svn信息<br>svn revert 回滚本地所有的未上传的所有修改，慎用，回复该本地所有的修改操作。可一次回滚一个目录或者文件<br>svn revert file —depth=infinity 回滚该目录下的所有文件<br>svn diff -r3 rules.txt 将本地的working目录下的文件和服务器的r3版本之间进行比较<br>svn diff -r 3:2 rules.txt 比较服务器上得r2版本和r3版本    </p>
+</blockquote>
 </li>
 </ol>
   
@@ -179,7 +119,7 @@ Wget:
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  <span></span> <a href="/tags/SVN/">SVN</a>
   </div>
 
 </div>
@@ -188,7 +128,7 @@ Wget:
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/03/10/Hexo——搭建博客/" data-title="Hexo——搭建博客 | Vodka&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2014/07/04/SVN常用命令集合/" data-title="SVN常用命令集合 | Vodka&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -202,18 +142,18 @@ Wget:
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/03/14/XML-JSON/" title="XML&amp;JSON">
+ <a href="/2015/03/10/Hexo——搭建博客/" title="Hexo——搭建博客">
   <strong>上一篇：</strong><br/>
   <span>
-  XML&amp;JSON</span>
+  Hexo——搭建博客</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/07/04/SVN常用命令集合/"  title="SVN常用命令集合">
+<a href="/2014/04/22/UIButton控件设置/"  title="UIButton控件设置">
  <strong>下一篇：</strong><br/> 
- <span>SVN常用命令集合
+ <span>UIButton控件设置
 </span>
 </a>
 </div>
@@ -228,7 +168,7 @@ Wget:
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#本地搭建hexo"><span class="toc-number">1.</span> <span class="toc-text">本地搭建hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署到github"><span class="toc-number">2.</span> <span class="toc-text">部署到github</span></a></li></ol>
+ 
  
   </div>
 
