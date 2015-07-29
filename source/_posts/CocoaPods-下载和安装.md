@@ -56,7 +56,8 @@ tags: CocoaPods
 	```
 	不过你在执行此条命令时会要等N久，主要是执行上述命令时会升级Cocoapods的spec仓库，加一个参数就可以省略这一步，然后速度就会有相当大的提升，命令如下：
 	```
-	pod install --version --no-repo-update
+	pod install --verbose --no-repo-update
+	pod update --verbose --no-repo-update
 	```
 	
 	

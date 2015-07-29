@@ -208,7 +208,7 @@ AFNetworking类库在Github地址是:(https://github.com/AFNetworking/AFNetworki
 <span class="comment"><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="keyword">install</span></span><br></pre></td></tr></table></figure></span>
 
 不过你在执行此条命令时会要等N久，主要是执行上述命令时会升级Cocoapods的spec仓库，加一个参数就可以省略这一步，然后速度就会有相当大的提升，命令如下：
-<span class="comment"><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install --<span class="keyword">version</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br></pre></td></tr></table></figure></span>
+<span class="comment"><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod install --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br><span class="line">pod <span class="keyword">update</span> --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br></pre></td></tr></table></figure></span>
 </code></pre>
         
         
