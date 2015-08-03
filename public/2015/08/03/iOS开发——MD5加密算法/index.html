@@ -4,52 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>UIButton控件设置 | Vodka&#39;s Blog</title>
+    <title>iOS开发——MD5加密算法 | Vodka&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Vodka">
     
 
     
-    <meta name="description" content="创建UIButton对象
- UIButton *bt = [[UIButton alloc]init];
-
-隐藏UIButton
- bt.hidden=YES;//此时按钮被隐藏 bt.hidden=NO;//此时按钮被显示在视图中
-
-设置UIButton的坐标和大小
- [bt setFrame:CGRectMake(100, 100, 100, 40)];
-
-设置UIButton的颜色
- [bt">
+    <meta name="description" content="MD5加密算法，实现类别如下：
+ 方法一：
+ 12345678910111213141516171819202122#import &amp;lt;CommonCrypto/CommonDigest.h&amp;gt;@interface NSString (md5)-(NSString *)md5HexDigest;@end#improt &quot;NSString+MD5HexDigest.h&quot;@implementa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIButton控件设置">
-<meta property="og:url" content="http://yoursite.com/2014/04/22/UIButton控件设置/index.html">
+<meta property="og:title" content="iOS开发——MD5加密算法">
+<meta property="og:url" content="http://yoursite.com/2015/08/03/iOS开发——MD5加密算法/index.html">
 <meta property="og:site_name" content="Vodka's Blog">
-<meta property="og:description" content="创建UIButton对象
- UIButton *bt = [[UIButton alloc]init];
-
-隐藏UIButton
- bt.hidden=YES;//此时按钮被隐藏 bt.hidden=NO;//此时按钮被显示在视图中
-
-设置UIButton的坐标和大小
- [bt setFrame:CGRectMake(100, 100, 100, 40)];
-
-设置UIButton的颜色
- [bt">
+<meta property="og:description" content="MD5加密算法，实现类别如下：
+ 方法一：
+ 12345678910111213141516171819202122#import &amp;lt;CommonCrypto/CommonDigest.h&amp;gt;@interface NSString (md5)-(NSString *)md5HexDigest;@end#improt &quot;NSString+MD5HexDigest.h&quot;@implementa">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIButton控件设置">
-<meta name="twitter:description" content="创建UIButton对象
- UIButton *bt = [[UIButton alloc]init];
-
-隐藏UIButton
- bt.hidden=YES;//此时按钮被隐藏 bt.hidden=NO;//此时按钮被显示在视图中
-
-设置UIButton的坐标和大小
- [bt setFrame:CGRectMake(100, 100, 100, 40)];
-
-设置UIButton的颜色
- [bt">
+<meta name="twitter:title" content="iOS开发——MD5加密算法">
+<meta name="twitter:description" content="MD5加密算法，实现类别如下：
+ 方法一：
+ 12345678910111213141516171819202122#import &amp;lt;CommonCrypto/CommonDigest.h&amp;gt;@interface NSString (md5)-(NSString *)md5HexDigest;@end#improt &quot;NSString+MD5HexDigest.h&quot;@implementa">
 
     
     <link rel="alternative" href="/atom.xml" title="Vodka&#39;s Blog" type="application/atom+xml">
@@ -108,14 +84,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/04/22/UIButton控件设置/" title="UIButton控件设置" itemprop="url">UIButton控件设置</a>
+      <a href="/2015/08/03/iOS开发——MD5加密算法/" title="iOS开发——MD5加密算法" itemprop="url">iOS开发——MD5加密算法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
 		
   <p class="article-time">
-    <time datetime="2014-04-22T08:55:43.000Z" itemprop="datePublished"> 发表于 2014-04-22</time>
+    <time datetime="2015-08-03T05:35:22.000Z" itemprop="datePublished"> 发表于 2015-08-03</time>
     
   </p>
 </header>
@@ -129,27 +105,12 @@
 		</div>
 		
 		<ol>
-<li><p>创建UIButton对象</p>
-<p> UIButton *bt = [[UIButton alloc]init];</p>
-</li>
-<li><p>隐藏UIButton</p>
-<p> bt.hidden=YES;//此时按钮被隐藏<br> bt.hidden=NO;//此时按钮被显示在视图中</p>
-</li>
-<li><p>设置UIButton的坐标和大小</p>
-<p> [bt setFrame:CGRectMake(100, 100, 100, 40)];</p>
-</li>
-<li><p>设置UIButton的颜色</p>
-<p> [bt setBackgroundColor:[UIColor redColor]]</p>
-</li>
-<li><p>设置UIButton的标题字，forState设置的时按钮的当前状态，此时为正常状态</p>
-<p> [bt setTitle:@”aaa” forState:UIControlStateNormal];</p>
-<p> UIButton的各种状态</p>
-<blockquote>
-<p>   正常状态 UIControlStateNormal;<br>   高亮状态 UIControlStateHighlighted;<br>   禁用状态UIControlStateDisabled；<br>   选中状态 UIControlStateSelected;<br>   代理状态 UIControlStateApplication;<br>   保留状态 UIControlStateReserved;</p>
-</blockquote>
-</li>
-<li><p>设置UIButton在正常状态下的字体颜色</p>
-<p> [bt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];</p>
+<li><p>MD5加密算法，实现类别如下：</p>
+<p> 方法一：</p>
+ <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import &lt;CommonCrypto/CommonDigest.h&gt;</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">interface</span> <span class="type">NSString</span> (md5)</span><br><span class="line">-(<span class="type">NSString</span> *)md5HexDigest;</span><br><span class="line">@<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#improt "NSString+MD5HexDigest.h"</span></span><br><span class="line"></span><br><span class="line">@implementation <span class="type">NSString</span> (md5)</span><br><span class="line"></span><br><span class="line">- (<span class="type">NSString</span> *)md5HexDigest &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="type">char</span> *original_str = [self <span class="type">UTF8String</span>];</span><br><span class="line">	unsigned <span class="type">char</span> <span class="literal">result</span>[<span class="type">CC_MD5_DIGEST_LENGTH</span>];</span><br><span class="line">	<span class="type">CC_MD5</span>(original_str, strlen(original_str), <span class="literal">result</span>);</span><br><span class="line">	<span class="type">NSMutableString</span> *hash = [<span class="type">NSMutableString</span> <span class="type">string</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">		[hash appendFormat:@<span class="string">"%02X"</span>, <span class="literal">result</span>[i]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> [hash lowercaseString];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p> 方法二：<br> 将字符串进行MD5加密，返回加密后的字符串</p>
+ <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import &lt;CommonCrypro/CommonDigest.h&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="type">NSString</span> *)md5WithString:(<span class="type">NSString</span> *)str</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="type">char</span> *cStr = [str <span class="type">UTF8String</span>];</span><br><span class="line">	unsigned <span class="type">char</span> <span class="literal">result</span>[<span class="number">16</span>];</span><br><span class="line">	<span class="type">CC_MD5</span>(cStr, strlen(cStr), <span class="literal">result</span>);// this <span class="keyword">is</span> the md call</span><br><span class="line">	<span class="keyword">return</span> [<span class="type">NSString</span> stringWithFormat:@<span class="string">"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"</span>,  </span><br><span class="line">	<span class="literal">result</span>[<span class="number">0</span>], <span class="literal">result</span>[<span class="number">1</span>], <span class="literal">result</span>[<span class="number">2</span>], <span class="literal">result</span>[<span class="number">3</span>], </span><br><span class="line">       <span class="literal">result</span>[<span class="number">4</span>], <span class="literal">result</span>[<span class="number">5</span>], <span class="literal">result</span>[<span class="number">6</span>], <span class="literal">result</span>[<span class="number">7</span>],</span><br><span class="line">       <span class="literal">result</span>[<span class="number">8</span>], <span class="literal">result</span>[<span class="number">9</span>], <span class="literal">result</span>[<span class="number">10</span>], <span class="literal">result</span>[<span class="number">11</span>],</span><br><span class="line">       <span class="literal">result</span>[<span class="number">12</span>], <span class="literal">result</span>[<span class="number">13</span>], <span class="literal">result</span>[<span class="number">14</span>], <span class="literal">result</span>[<span class="number">15</span>]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <code>注意：</code> MD5是不可逆的只有加密没有解密</p>
 </li>
 </ol>
   
@@ -160,7 +121,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/UIButton/">UIButton</a>
+  <span></span> <a href="/tags/MD5加密/">MD5加密</a>
   </div>
 
 </div>
@@ -169,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2014/04/22/UIButton控件设置/" data-title="UIButton控件设置 | Vodka&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/08/03/iOS开发——MD5加密算法/" data-title="iOS开发——MD5加密算法 | Vodka&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -182,14 +143,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/07/04/SVN常用命令集合/" title="SVN常用命令集合">
-  <strong>上一篇：</strong><br/>
-  <span>
-  SVN常用命令集合</span>
+
+<div class="next">
+<a href="/2015/07/21/OC数组排序/"  title="OC数组排序">
+ <strong>下一篇：</strong><br/> 
+ <span>OC数组排序
+</span>
 </a>
 </div>
-
 
 </nav>
 
