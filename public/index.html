@@ -80,6 +80,67 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/12/Xcode已安装插件的删除/" title="Xcode已安装插件的删除" itemprop="url">Xcode已安装插件的删除</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-12T05:16:29.000Z" itemprop="datePublished"> 发表于 2015-08-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p>首先进入iterm编辑器中，在home下输入如下命令：</p>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Library<span class="regexp">/Application\ Support/</span>Developer<span class="regexp">/Shared/</span>Xcode<span class="regexp">/Plug-ins/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入该文件夹下，你可以看到你所装的所有的插件，这是你想删除那个直接将那个文件夹删除就行了，什么？！你不知道怎么删除文件夹，好吧，你按如下操作就可以删除了，不过删除时你要小心了哦，<code>这个命令可是不会提醒你要删除哪个文件的</code>，请务必确认好你要删除的文件，删错了就不好了。</p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>rm -rf 文件名</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Xcode插件删除/">Xcode插件删除</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/03/iOS开发——MD5加密算法/" title="iOS开发——MD5加密算法" itemprop="url">iOS开发——MD5加密算法</a>
   </h1>
   <p class="article-author">By
@@ -219,97 +280,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/25/CocoaPods-下载和安装/" title="CocoaPods 下载和安装" itemprop="url">CocoaPods 下载和安装</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-25T07:02:45.000Z" itemprop="datePublished"> 发表于 2015-05-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="下载和安装">下载和安装</h3><pre><code>在安装之前，首先要在本地安装好Ruby环境。如果你在本地已经安装好Ruby环境，那么下载和安装CocoaPods将十分简单，只需要一行命令。在终端中输入如下命令
-<span class="comment"><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem <span class="keyword">install</span> cocoapods</span><br></pre></td></tr></table></figure></span>
-
-但是，如果你在天朝，在终端中敲入这个命令之后，会发现半天没有任何反应。原因无他，因为那堵墙阻挡了cocoapods.org。我们可以用淘宝的Ruby镜像来访问cocoapods。按照下面的顺序在终端中依次敲入命令：
-<span class="comment"><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="keyword">source</span> --remove https:<span class="comment">//rubygems.org/</span></span><br><span class="line">gem <span class="keyword">source</span> -a http:<span class="comment">//ruby.taobao.org/</span></span><br></pre></td></tr></table></figure></span>
-
-为了验证你的Ruby镜像是并且仅是taobao，可以用一下命令查看：
-<span class="comment"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="built_in">source</span> <span class="operator">-l</span></span><br></pre></td></tr></table></figure></span>
-
-只有在终端中出现下面文字才表明你上面的命令是成功的：
-<span class="comment"><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line">http://ruby.taobao.org/</span><br></pre></td></tr></table></figure></span>
-
-此时，你再次在终端中运行：
-<span class="comment"><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem <span class="keyword">install</span> cocoapods</span><br></pre></td></tr></table></figure></span>
-</code></pre><h3 id="使用CocoaPods">使用CocoaPods</h3><pre><code>安装好之后就是如何使用它了。我们以AFNetworking来说明吧
-AFNetworking类库在Github地址是:(https://github.com/AFNetworking/AFNetworking)
-为了确定AFnetworking是否支持Cocoapods，可以用Cocoapods的搜索功能验证一下。在终端中输入：
-<span class="comment"><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pod</span> search AFnetworking</span><br></pre></td></tr></table></figure></span>
-
-随后你会看到相关信息，准备工作也差不多了，下面让我们进入正题
-首先先利用Xcode创建一个项目工程。随后在终端中进入所创建的项目文件中，然后运行：
-<span class="comment"><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pod</span> init</span><br></pre></td></tr></table></figure></span>
-
-随后cocoapods会为项目自动生成一个Podfile文件，执行：
-<span class="comment"><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">vim</span> Podfile</span><br></pre></td></tr></table></figure></span>
-
-然后再Podfile文件中target和end之间输入以下信息：
-<span class="comment"><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></span><br><span class="line">pod <span class="string">"AFNetworking"</span>, <span class="string">"~&gt; 2.0"</span></span><br></pre></td></tr></table></figure></span>
-
-随后退出编辑模式，执行：
-<span class="comment"><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="keyword">install</span></span><br></pre></td></tr></table></figure></span>
-
-不过你在执行此条命令时会要等N久，主要是执行上述命令时会升级Cocoapods的spec仓库，加一个参数就可以省略这一步，然后速度就会有相当大的提升，命令如下：
-<span class="comment"><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod install --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br><span class="line">pod <span class="keyword">update</span> --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br></pre></td></tr></table></figure></span>
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/CocoaPods/">CocoaPods</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -327,7 +300,7 @@ AFNetworking类库在Github地址是:(https://github.com/AFNetworking/AFNetworki
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/ToolBar/" title="ToolBar">ToolBar<sup>1</sup></a></li>
+				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
 			
 		
 			
@@ -347,11 +320,15 @@ AFNetworking类库在Github地址是:(https://github.com/AFNetworking/AFNetworki
 			
 		
 			
-				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
+				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/面向对象思想/" title="面向对象思想">面向对象思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ToolBar/" title="ToolBar">ToolBar<sup>1</sup></a></li>
 			
 		
 			
