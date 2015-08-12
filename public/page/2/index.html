@@ -80,6 +80,88 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/07/21/OC数组排序/" title="OC数组排序" itemprop="url">OC数组排序</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-21T05:47:56.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>大体上，OC中常用的数组排序有以下几种方法：<br>sortedArrayUsingSelector:<br>sortedArrayUsingComparator:<br>sortedArrayUsingDescriptors:</p>
+</blockquote>
+<h3 id="简单排序（sortedArrayUsingSelector:）">简单排序（sortedArrayUsingSelector:）</h3><ol>
+<li><p>简单排序</p>
+<p> 如果只是对字符串的排序，可以利用sortedArrayUsingSelector:方法就可以了，代码如下：</p>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单排序</span></span><br><span class="line"><span class="keyword">void</span> sortArray1()&#123;</span><br><span class="line">   <span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"abc"</span>,<span class="string">@"456"</span>,<span class="string">@"123"</span>,<span class="string">@"789"</span>,<span class="string">@"ef"</span>, <span class="literal">nil</span>];</span><br><span class="line">   <span class="built_in">NSArray</span> *sortedArray = [array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"排序后:%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 除了字符串自带的compare:方法，也可以自己写compare:方法，进行对象的比较；如下：</p>
+<p> 首先是新建了Person类，实现方法如下：</p>
+ <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import "Person.h"</span></span><br><span class="line">@implementation <span class="type">Person</span></span><br><span class="line">//直接实现静态方法，获取带有name和age的<span class="type">Person</span>对象</span><br><span class="line">+(<span class="type">Person</span> *)personWithAge:(<span class="type">int</span>) age withName:(<span class="type">NSString</span> *)name&#123;</span><br><span class="line">   <span class="type">Person</span> *person = [[<span class="type">Person</span> alloc] init];</span><br><span class="line">   person.age = age;</span><br><span class="line">   person.name = name;</span><br><span class="line">   <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//自定义排序方法</span><br><span class="line">-(<span class="type">NSComparisonResult</span>)comparePerson:(<span class="type">Person</span> *)person&#123;</span><br><span class="line"> //默认按年龄排序</span><br><span class="line">   <span class="type">NSComparisonResult</span> <span class="literal">result</span> = [[<span class="type">NSNumber</span> numberWithInt:person.age] compare:[<span class="type">NSNumber</span> numberWithInt:self.age]];//注意:基本数据类型要进行数据转换</span><br><span class="line"> //如果年龄一样，就按照名字排序</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">NSOrderedSame</span>) &#123;</span><br><span class="line">       <span class="literal">result</span> = [self.name compare:person.name];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p> 主函数代码如下：</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="typename">void</span> sortArray2()&#123;</span><br><span class="line">    Person *p1 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"zhangsan"</span>];</span><br><span class="line">    Person *p2 = [Person <span class="string">personWithAge:</span><span class="number">21</span> <span class="string">withName:</span>@<span class="string">"lisi"</span>];</span><br><span class="line">    Person *p3 = [Person <span class="string">personWithAge:</span><span class="number">24</span> <span class="string">withName:</span>@<span class="string">"wangwu"</span>];</span><br><span class="line">    Person *p4 = [Person <span class="string">personWithAge:</span><span class="number">24</span> <span class="string">withName:</span>@<span class="string">"liwu"</span>];</span><br><span class="line">    Person *p5 = [Person <span class="string">personWithAge:</span><span class="number">20</span> <span class="string">withName:</span>@<span class="string">"liwu"</span>];</span><br><span class="line">    NSArray *array = [NSArray <span class="string">arrayWithObjects:</span>p1,p2,p3,p4,p5, nil];</span><br><span class="line">    NSArray *sortedArray = [array <span class="string">sortedArrayUsingSelector:</span><span class="annotation">@selector</span>(<span class="string">comparePerson:</span>)];</span><br><span class="line">    NSLog(@<span class="string">"排序后:%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用block语法（sortedArrayUsingComparator:）</p>
+<p> 苹果官方提供了block语法，比较方便。其中数组排序可以用sortedArrayUsingComparator:方法，代码如下：</p>
+ <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> sortArray3()&#123;</span><br><span class="line">    <span class="type">NSArray</span> *<span class="type">array</span> = [<span class="type">NSArray</span> arrayWithObjects:@<span class="string">"1bc"</span>,@<span class="string">"4b6"</span>,@<span class="string">"123"</span>,@<span class="string">"789"</span>,@<span class="string">"3ef"</span>, <span class="keyword">nil</span>];</span><br><span class="line">    <span class="type">NSArray</span> *sortedArray = [<span class="type">array</span> sortedArrayUsingComparator:^<span class="type">NSComparisonResult</span>(id obj1, id obj2) &#123;</span><br><span class="line"> </span><br><span class="line">   //这里的代码可以参照上面compare:默认的排序方法，也可以把自定义的方法写在这里，给对象排序</span><br><span class="line">        <span class="type">NSComparisonResult</span> <span class="literal">result</span> = [obj1 compare:obj2];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;];</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"排序后:%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>高级排序（sortedArrayUsingDescriptors:）</p>
+<p> Person类里面有另外一个类的变量，比如说Person类除了name，age变量，还有一辆车Car类型，Car类里面有个name属性。对Person对象进行排序，有这样的要求：按照Car的name排序，如果是同一辆车，也就是Car的name相同，name再按照年龄进行排序，如果年龄也相同，最后按照Person的name进行排序。</p>
+<p> 上面这样就要使用第三种方法，利用排序描述其，不过说，看API介绍。如下：<br> 首先写个Car类，实现类Car.m代码如下：</p>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span></span></span><br><span class="line"> </span><br><span class="line">+(Car *)initWithName:(<span class="built_in">NSString</span> *)name&#123;</span><br><span class="line">    Car *car = [Car alloc] init];</span><br><span class="line">    car<span class="variable">.name</span> = name;</span><br><span class="line">    <span class="keyword">return</span> car;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p> 然后改写Person类，实现类Person.m代码如下：</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> <span class="string">"Person.h"</span></span><br><span class="line">#<span class="keyword">import</span> <span class="string">"Car.h"</span></span><br><span class="line"><span class="annotation">@implementation</span> Person</span><br><span class="line"> </span><br><span class="line">+(Person *)<span class="string">personWithAge:</span>(<span class="typename">int</span>)age <span class="string">withName:</span>(NSString *)name <span class="string">withCar:</span>(Car *)car&#123;</span><br><span class="line">    Person *person = [[Person alloc] init];</span><br><span class="line">    person.age = age;</span><br><span class="line">    person.name = name;</span><br><span class="line">    person.car = car;</span><br><span class="line">    <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//这里重写description方法，用于最后测试排序结果显示</span></span><br><span class="line">-(NSString *)description&#123;</span><br><span class="line">    <span class="keyword">return</span> [NSString <span class="string">stringWithFormat:</span>@<span class="string">"age is %zi , name is %@, car is %@"</span>,_age,_name,_car.name];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="annotation">@end</span></span><br></pre></td></tr></table></figure>
+<p> 主函数代码如下：</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="typename">void</span> sortArray4()&#123;</span><br><span class="line">        <span class="comment">//首先来3辆车，分别是奥迪、劳斯莱斯、宝马</span></span><br><span class="line">        Car *car1 = [Car <span class="string">initWithName:</span>@<span class="string">"Audio"</span>];</span><br><span class="line">        Car *car2 = [Car <span class="string">initWithName:</span>@<span class="string">"Rolls-Royce"</span>];</span><br><span class="line">        Car *car3 = [Car <span class="string">initWithName:</span>@<span class="string">"BMW"</span>];</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//再来5个Person，每人送辆车，分别为car2、car1、car1、car3、car2</span></span><br><span class="line">        Person *p1 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"zhangsan"</span> <span class="string">withCar:</span>car2];</span><br><span class="line">        Person *p2 = [Person <span class="string">personWithAge:</span><span class="number">21</span> <span class="string">withName:</span>@<span class="string">"zhangsan"</span> <span class="string">withCar:</span>car1];</span><br><span class="line">        Person *p3 = [Person <span class="string">personWithAge:</span><span class="number">24</span> <span class="string">withName:</span>@<span class="string">"lisi"</span> <span class="string">withCar:</span>car1];</span><br><span class="line">        Person *p4 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"wangwu"</span> <span class="string">withCar:</span>car3];</span><br><span class="line">        Person *p5 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"wangwu"</span> <span class="string">withCar:</span>car2];</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">        <span class="comment">//加入数组</span></span><br><span class="line">        NSArray *array = [NSArray <span class="string">arrayWithObjects:</span>p1,p2,p3,p4,p5, nil];</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//构建排序描述器</span></span><br><span class="line">        NSSortDescriptor *carNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"car.name"</span> <span class="string">ascending:</span>YES];</span><br><span class="line">        NSSortDescriptor *personNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"name"</span> <span class="string">ascending:</span>YES];</span><br><span class="line">        NSSortDescriptor *personAgeDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"age"</span> <span class="string">ascending:</span>YES];</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//把排序描述器放进数组里，放入的顺序就是你想要排序的顺序</span></span><br><span class="line">        <span class="comment">//我这里是：首先按照年龄排序，然后是车的名字，最后是按照人的名字</span></span><br><span class="line">        NSArray *descriptorArray = [NSArray <span class="string">arrayWithObjects:</span>personAgeDesc,carNameDesc,personNameDesc, nil];</span><br><span class="line">         </span><br><span class="line">        NSArray *sortedArray = [array <span class="string">sortedArrayUsingDescriptors:</span> descriptorArray];</span><br><span class="line">        NSLog(@<span class="string">"%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 结果如下：<br> <img src="/images/数组排序/20150721.png" alt="image"></p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数组排序/">数组排序</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/25/CocoaPods-下载和安装/" title="CocoaPods 下载和安装" itemprop="url">CocoaPods 下载和安装</a>
   </h1>
   <p class="article-author">By
@@ -259,81 +341,6 @@ addnum (方法名称)
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/30/迎着缺陷奔跑/" title="迎着缺陷奔跑" itemprop="url">迎着缺陷奔跑</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-30T01:55:14.000Z" itemprop="datePublished"> 发表于 2015-04-30</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <pre><code>他是一个严重晕车的弄明，一上车，就会吐得一塌糊涂。连骑自行车，他也会恶心难受。他很少出门，连十多里外的小镇也很少去。如果把这个社会比作一辆车，那么“交通”和“信息”就是这个社会的两个轮子，而他的人生因为远离了“交通”，就像缺了一个轮子，他跑步起来了。
-
-同龄人纷纷外出打工，很快赚回了真金白银，造起了新房，娶了妻子，生了孩子，其乐融融。而他只能承包了一些天地，种水稻，种小麦，种西瓜，种花生……勉强维持生计。年轻的姑娘很现实，看他造不起新房，连乘车出趟远门都可能吐得要了他的命，没有人愿意嫁给他。
-
-后来农闲的时候，村里人经常看到他跑到车站，尝试着乘车，乘一小段就会要求司机停车，然后蹲在地上吐一会儿。吐完了，再登下一班车来，然后又是乘一段，下车吐一会儿，如此循环。
-
-为了治自己的病，他徒步走到县医院、省医院，但没有一点效果。他又买了许多医药书，自己琢磨。阅读大量医书后，他终于明白，晕车是由于人的前庭系统太敏感引起的，如果要减轻晕车，唯一的办法就是抑制前庭系统的兴奋水平。
-
-三十岁那年，他对年迈的父母说，自己准备去学车。大家都反对，这样一个一上车就会呕吐的人，怎么可能？但他坚持。
-
-家人帮他找了一位教练，事先告诉教练他得情况。教练答应了老人，但他“一上车就吐”的症状还是让教练接受不了。于是，他每天上车前基本不吃东西，只喝一些盐水，这样肠胃里就没有什么可吐的了。神奇的是，症状竟然慢慢在减轻。他觉得自己的坚持是对的，满满的，他可以连续驾驶半个小时，身体也没有什么症状了。
-
-他拿到驾照后，借了不少钱，买了一辆二手的就卡车，跑起了运输，赚下了人生第一桶金，他也造起了房子娶了妻子。后来妻子因为他经常跑长途很担心，他索性卖掉了货车，举债到城里买了一辆出租车。现在他每天又8小时在出租车上，从来不会晕车了。
-
-有一天，这位司机与我一起吃放，说起他的故事，他说自己是一个“神医”，自己医好了自己的病。我不明白，当年他怎么知道开车可以医好晕车症呢？
-
-他说，有一次看二战片，片中有个场景：一艘太平洋上的战舰上，士兵们因为风浪太大晕船，此时，战舰雷达上捕获到前面有敌舰，敌舰武器装备精良。舰长知道士兵们因为晕船几无战斗力了，大家的命运凶多吉少。警报发出后，士兵们全部进入战斗位，集中火力射向战舰，鏖战一个小时候，敌舰仓皇而逃。而让人惊奇的是，所有士兵都没有了晕船症状。
-
-如果当年他没有去“啃”那些难懂的医药书，如果他没有看到这部片子，如果他没有不肯低头的勇气，他现在又将身处那种情景？
-
-上苍想来不会垂青一个弱者。幸运的是，他没有听从命运的安排，面对缺陷，不是逃避，而是面对，并且迎着缺陷奔跑，把可能毁掉他人生的“缺陷”狠狠地打倒在地，终于逆势起飞了。
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/故事一则/">故事一则</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -363,6 +370,10 @@ addnum (方法名称)
 		
 			
 				<li><a href="/tags/故事一则/" title="故事一则">故事一则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/手写Button设置/" title="手写Button设置">手写Button设置<sup>1</sup></a></li>
 			
 		
 			

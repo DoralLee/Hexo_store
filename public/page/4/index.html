@@ -80,6 +80,167 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/03/31/iOS学习-Quartz2D使用/" title="iOS学习-Quartz2D使用" itemprop="url">iOS学习-Quartz2D使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-31T13:29:47.000Z" itemprop="datePublished"> 发表于 2015-03-31</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="一、什么是Quartz2D?">一、什么是Quartz2D?</h3><ol>
+<li>Quartz2D是一个二维绘图引擎，同时支持IOS和Mac系统,基于路径的绘制</li>
+<li>Quartz2D能做成的工作</li>
+<li>绘制图形：线条、三角形，矩形，圆，弧等</li>
+<li>绘制文字</li>
+<li>绘制/生成图片（图像）</li>
+<li>读取/生成PDF</li>
+<li>截图/裁剪图片</li>
+<li>自定义UI控件。（当我们不满足系统给出的控件，可以自己制造）</li>
+<li><code>Quartz2D的API是纯C语言的，Quartz2D的API基于core Graphics框架</code></li>
+</ol>
+<h3 id="二、Quartz2D是怎样将绘图信息和绘图的属性绘制到图形上下文中去的呢？">二、Quartz2D是怎样将绘图信息和绘图的属性绘制到图形上下文中去的呢？</h3><p><code>说明：</code>     </p>
+<ul>
+<li>新建一个项目，自定义一个view类和storyboard关联后，重写该类中的drawRect：方法,drawRect方法当View第一次显示到屏幕上时会被调用，以及调用setNeedsDisplay或者setNeedsDisplayInRectangular时   </li>
+</ul>
+<ul>
+<li><p>划线的三个步骤：</p>
+<ol>
+<li>获取上下文</li>
+<li>绘制路径</li>
+<li>渲染</li>
+</ol>
+</li>
+</ul>
+<h4 id="Paths">Paths</h4><ol>
+<li>paths中的重要元素<br><em>Point（点）</em></li>
+</ol>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGContextMoveToPoint (</span><br><span class="line">    CGContextRef c,</span><br><span class="line">    CGFloat x,</span><br><span class="line">    CGFloat y</span><br><span class="line"> );</span><br><span class="line"> 指定一个点成为当前点（current <span class="built_in">point</span>），Quartz会更重current <span class="built_in">point</span>，执行完一个相关函数后，current <span class="built_in">point</span>会相应的改变到函数结束位置</span><br></pre></td></tr></table></figure>
+<p><em>Lines（线段）</em></p>
+<p>相关的几个函数<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">void</span> CGContextAddLineToPoint (</span><br><span class="line">    CGContextRef c,</span><br><span class="line">    <span class="built_in">CGFloat</span> x,</span><br><span class="line">    <span class="built_in">CGFloat</span> y</span><br><span class="line"> );</span><br><span class="line"> 创建一条直线，从current point到 (x,y)</span><br><span class="line"> 然后current point会变成(x,y)</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">void</span> CGContextAddLines (</span><br><span class="line">    CGContextRef c,</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">CGPoint</span> points[],</span><br><span class="line">    size_t count</span><br><span class="line"> );</span><br><span class="line"> 创建多条直线，比如points有两个点，那么会画两条直线 从current point到 (x1,y1),</span><br><span class="line"> 然后是(x1,y1)到(x2,y2)</span><br><span class="line"> 然后current point会变成points中的最后一个点</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//设置线段的宽度</span></span><br><span class="line"> CGContextSetLineWidth(CGContextRef c, <span class="built_in">CGFloat</span> width)</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置线段头尾部的样式(但是Xcode更新后好多效果都差不多)</span></span><br><span class="line">CGContextSetLineCap(CGContextRef c, CGLineCap cap)<span class="comment">//第二个参数是枚举值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置线段转折点的样式</span></span><br><span class="line">CGContextSetLineJoin(CGContextRef c, CGLineJoin join)<span class="comment">//同上</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置点划线的样式</span></span><br><span class="line">   <span class="keyword">const</span> <span class="built_in">CGFloat</span> lengths[]=&#123;<span class="number">2</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">1</span>&#125;;</span><br><span class="line">   CGContextSetLineDash(ctx, <span class="number">0</span>, lengths, <span class="number">4</span>);</span><br><span class="line">CGContextSetLineDash(CGContextRef c, <span class="built_in">CGFloat</span> phase, <span class="keyword">const</span> <span class="built_in">CGFloat</span> *lengths, size_t count)</span><br></pre></td></tr></table></figure></p>
+<p><em>Arcs（弧线）</em></p>
+<ol>
+<li><p>创建弧线之弧度法<br>  假如想创建一个完整的圆圈，那么 开始弧度就是0 结束弧度是 2pi， 因为圆周长是 2<em>pi</em>r.<br>  最后，函数执行完后，current point就被重置为(x,y).<br>  还有一点要注意的是，假如当前path已经存在一个subpath，那么这个函数执行的另外一个效果是有一条直线，从current point到弧的起点</p>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGContextAddArc (</span><br><span class="line">   CGContextRef c,    </span><br><span class="line">   <span class="built_in">CGFloat</span> x,             <span class="comment">//圆心的x坐标</span></span><br><span class="line">   <span class="built_in">CGFloat</span> y,    <span class="comment">//圆心的y坐标</span></span><br><span class="line">   <span class="built_in">CGFloat</span> radius,   <span class="comment">//圆的半径 </span></span><br><span class="line">   <span class="built_in">CGFloat</span> startAngle,    <span class="comment">//开始弧度</span></span><br><span class="line">   <span class="built_in">CGFloat</span> endAngle,   <span class="comment">//结束弧度（360°是2* M_PI不是M_2_PI）</span></span><br><span class="line">   <span class="keyword">int</span> clockwise          <span class="comment">//0表示顺时针，1表示逆时针</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建弧线之切线法<br> 原理：首先画两条线，这两条线分别是 current point to (x1,y1) 和(x1,y1) to (x2,y2).<br>  这样就是出现一个以(x1,y1)为顶点的两条射线，<br>  然后定义半径长度，这个半径是垂直于两条射线的，这样就能决定一个圆了，更好的理解看下图，不过个人认为下图所标的 tangent point 1的位置是错误的。<br>  最后，函数执行完后，current point就被重置为(x2,y2).</p>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGContextAddArcToPoint (</span><br><span class="line">   CGContextRef c,</span><br><span class="line">   <span class="built_in">CGFloat</span> x1,  <span class="comment">//端点1的x坐标</span></span><br><span class="line">   <span class="built_in">CGFloat</span> y1,  <span class="comment">//端点1的y坐标</span></span><br><span class="line">   <span class="built_in">CGFloat</span> x2,  <span class="comment">//端点2的x坐标</span></span><br><span class="line">   <span class="built_in">CGFloat</span> y2,  <span class="comment">//端点2的y坐标</span></span><br><span class="line">   <span class="built_in">CGFloat</span> radius <span class="comment">//半径</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><em>Curves(曲线)</em><br>定义几个控制点，切着控制点组成的直线而形成的曲线</p>
+<pre><code>1. 三次曲线函数
+<span class="comment"><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGContextAddCurveToPoint (</span><br><span class="line">	    CGContextRef c,</span><br><span class="line">	    <span class="built_in">CGFloat</span> cp1x, <span class="comment">//控制点1 x坐标</span></span><br><span class="line">	    <span class="built_in">CGFloat</span> cp1y, <span class="comment">//控制点1 y坐标</span></span><br><span class="line">	    <span class="built_in">CGFloat</span> cp2x, <span class="comment">//控制点2 x坐标</span></span><br><span class="line">	    <span class="built_in">CGFloat</span> cp2y, <span class="comment">//控制点2 y坐标</span></span><br><span class="line">	    <span class="built_in">CGFloat</span> x,  <span class="comment">//曲线的终点 x坐标</span></span><br><span class="line">	    <span class="built_in">CGFloat</span> y  <span class="comment">//曲线的终点 y坐标</span></span><br><span class="line">	 );</span><br></pre></td></tr></table></figure></span>
+
+2. 二次曲线函数
+<span class="comment"><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGContextAddQuadCurveToPoint (</span><br><span class="line">    CGContextRef c,</span><br><span class="line">    <span class="built_in">CGFloat</span> cpx,  <span class="comment">//控制点 x坐标</span></span><br><span class="line">    <span class="built_in">CGFloat</span> cpy,  <span class="comment">//控制点 y坐标</span></span><br><span class="line">    <span class="built_in">CGFloat</span> x,  <span class="comment">//曲线的终点 x坐标</span></span><br><span class="line">    <span class="built_in">CGFloat</span> y  <span class="comment">//曲线的终点 y坐标</span></span><br><span class="line">  );</span><br></pre></td></tr></table></figure></span>
+</code></pre><p><em>Clip（剪辑）</em><br><code>裁剪原理</code><br>    自定义一个View，在这个View中勾画出你要裁剪的区域，然后再将图片盖到裁剪区域的上方，指定裁剪的地方显示出来，其他地方不显示，这就是裁剪的原理。</p>
+<hr>
+<h4 id="例子：">例子：</h4><ul>
+<li>要求：绘制颜色为红色的直线，利用的颜色空间设置颜色</li>
+<li><code>注意：</code>颜色空间设置颜色必须在绘制完成之后对其进行回收</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(CGRect)<span class="built_in">rect</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Drawing code</span></span><br><span class="line">    <span class="comment">// 1. 获取绘图上下文</span></span><br><span class="line">    CGContextRef ctx = UIGraphicsGetCurrentContext();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 设置绘图状态</span></span><br><span class="line">    <span class="comment">// 设置线宽</span></span><br><span class="line">    CGContextSetLineWidth(ctx, <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置颜色</span></span><br><span class="line">    <span class="comment">// 创建颜色空间</span></span><br><span class="line">    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();</span><br><span class="line">    <span class="keyword">const</span> CGFloat components[] = &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="comment">// 创建颜色</span></span><br><span class="line">    CGColorRef <span class="built_in">color</span> = CGColorCreate(colorSpace, components);</span><br><span class="line">    <span class="comment">// 设置描边的颜色</span></span><br><span class="line">    CGContextSetStrokeColorWithColor(ctx, <span class="built_in">color</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置点划线</span></span><br><span class="line"><span class="comment">//    const CGFloat lengths[] = &#123;2,6,4,1&#125;;</span></span><br><span class="line"><span class="comment">//    CGContextSetLineDash(ctx, 0, lengths, 4);</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 构建Path</span></span><br><span class="line">    NSLog(@<span class="string">"%@"</span>, NSStringFromCGPoint(<span class="built_in">rect</span>.origin));</span><br><span class="line">    <span class="comment">// 移动画笔到指定点</span></span><br><span class="line">    <span class="comment">// 开始path</span></span><br><span class="line">    CGContextBeginPath(ctx);</span><br><span class="line">    CGContextMoveToPoint(ctx, <span class="built_in">rect</span>.origin.x, <span class="built_in">rect</span>.origin.y);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 添加一条直线</span></span><br><span class="line">    CGContextAddLineToPoint(ctx, CGRectGetMaxX(<span class="built_in">rect</span>), CGRectGetMaxY(<span class="built_in">rect</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 关闭path</span></span><br><span class="line">    CGContextClosePath(ctx);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 绘制 stroke fill</span></span><br><span class="line"><span class="comment">//    CGContextFillPath(&lt;#CGContextRef c#&gt;)</span></span><br><span class="line"><span class="comment">//    CGContextStrokePath(&lt;#CGContextRef c#&gt;)</span></span><br><span class="line">    CGContextDrawPath(ctx, kCGPathStroke);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 5. 回收资源</span></span><br><span class="line">    CGColorRelease(<span class="built_in">color</span>);</span><br><span class="line">    CGColorSpaceRelease(colorSpace);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>效果图：<br><img src="/images/Quartz2D/Line.png" alt="image"></p>
+</li>
+<li><p>要求：绘制矩形区域，以红线描边，绿色填充</p>
+</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect<span class="value">:(CGRect)rect</span><br><span class="line">&#123;</span><br><span class="line">    // 获取上下文</span><br><span class="line">    CGContextRef ctx = <span class="function">UIGraphicsGetCurrentContext</span>();</span></span><br><span class="line">    <span class="comment">// 设置描边颜色</span></span><br><span class="line">    <span class="function">CGContextSetStrokeColorWithColor</span>(ctx, <span class="attr_selector">[UIColor redColor]</span><span class="class">.CGColor</span>);</span><br><span class="line">    <span class="comment">// 设置填充颜色</span></span><br><span class="line">    <span class="function">CGContextSetFillColorWithColor</span>(ctx, <span class="attr_selector">[UIColor greenColor]</span><span class="class">.CGColor</span>);</span><br><span class="line">    <span class="comment">// 设置线宽</span></span><br><span class="line">    <span class="function">CGContextSetLineWidth</span>(ctx, 3);</span><br><span class="line">    <span class="comment">// 添加矩形区域</span></span><br><span class="line">    <span class="function">CGContextAddRect</span>(ctx, rect);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//    CGContextStrokePath(ctx);</span></span><br><span class="line">	<span class="comment">// 绘制区域以及线</span></span><br><span class="line">    <span class="function">CGContextDrawPath</span>(ctx, kCGPathFillStroke);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>效果图：<br><img src="/images/Quartz2D/Rect.png" alt="image"></p>
+</li>
+<li><p>要求：绘制弧线，以切线方法，最终绘制为一个直径为100的圆</p>
+</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 获取上下文</span></span><br><span class="line">    CGContextRef ctx = UIGraphicsGetCurrentContext();</span><br><span class="line">    <span class="comment">// 设置描边颜色</span></span><br><span class="line">    CGContextSetStrokeColorWithColor(ctx, [<span class="built_in">UIColor</span> greenColor]<span class="variable">.CGColor</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGFloat</span> x = rect<span class="variable">.origin</span><span class="variable">.x</span>;</span><br><span class="line">    <span class="built_in">CGFloat</span> y = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">// 移动画笔到第一个切点(以rect顶点为原点)</span></span><br><span class="line">    CGContextMoveToPoint(ctx, x, y);</span><br><span class="line">    <span class="comment">// 确定两条切线交点位置，以及另一个切点位置</span></span><br><span class="line">    <span class="comment">//CGContextAddArcToPoint(CGContextRef c, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat radius)</span></span><br><span class="line">    <span class="comment">// c代表上下文，x1为交点x坐标，y1为交点y坐标，x2为第二切点的x，y2为第二切点的y，radius为弧线半径</span></span><br><span class="line">    CGContextAddArcToPoint(ctx, x, y+<span class="number">100</span>, x+<span class="number">100</span>, y+<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">    CGContextAddArcToPoint(ctx, x+<span class="number">200</span>, y+<span class="number">100</span>, x+<span class="number">200</span>, y, <span class="number">100</span>);</span><br><span class="line">    CGContextAddArcToPoint(ctx, x+<span class="number">200</span>, y-<span class="number">100</span>, x+<span class="number">100</span>, y-<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">    CGContextAddArcToPoint(ctx, x, y-<span class="number">100</span>, x, y, <span class="number">100</span>);</span><br><span class="line">    <span class="comment">// 绘制</span></span><br><span class="line">    CGContextStrokePath(ctx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>效果图：<br><img src="/images/Quartz2D/Arc.png" alt="image"></p>
+</li>
+<li><p>要求：绘制贝塞尔曲线</p>
+</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="pp">- <span class="params">(void)</span>drawRect:<span class="params">(<span class="variable">CGRect</span>)</span>rect</span><br><span class="line">&#123;</span><br><span class="line">	// 获取上下文</span><br><span class="line">    CGContextRef ctx = UIGraphicsGetCurrentContext<span class="params">()</span>;</span><br><span class="line">    </span><br><span class="line">    CGContextSetStrokeColorWithColor<span class="params">(ctx, [<span class="variable">UIColor</span> black<span class="variable">Color</span>].<span class="variable">CGColor</span>)</span>;</span><br><span class="line">    </span><br><span class="line">    CGFloat x = 0;</span><br><span class="line">    CGFloat y = 0;</span><br><span class="line">    </span><br><span class="line">    CGContextMoveToPoint<span class="params">(ctx, x, y)</span>;</span><br><span class="line">    </span><br><span class="line">    // CGContextAddCurveToPoint<span class="params">(<span class="variable">CGContextRef</span> c, <span class="variable">CGFloat</span> cp1x, <span class="variable">CGFloat</span> cp1y, <span class="variable">CGFloat</span> cp2x, <span class="variable">CGFloat</span> cp2y, <span class="variable">CGFloat</span> x, <span class="variable">CGFloat</span> y)</span></span><br><span class="line">    // cp1x，cp1y代表第一个贝塞尔参考点位置x和y，最后的xy代表终点位置</span><br><span class="line">    CGContextAddCurveToPoint<span class="params">(ctx, x+<span class="number">150</span>, y+<span class="number">50</span>, x+<span class="number">50</span>, y+<span class="number">350</span>, x+<span class="number">200</span>, y+<span class="number">400</span>)</span>;</span><br><span class="line">   //CGContextAddArcToPoint<span class="params">(ctx, x+<span class="number">150</span>, y+<span class="number">50</span>, x+<span class="number">200</span>, y, <span class="number">100</span>)</span>;</span><br><span class="line">//    CGContextAddArcToPoint<span class="params">(ctx, x+<span class="number">200</span>, y-<span class="number">100</span>, x+<span class="number">100</span>, y-<span class="number">100</span>, <span class="number">100</span>)</span>;</span><br><span class="line">//    CGContextAddArcToPoint<span class="params">(ctx, x, y-<span class="number">100</span>, x, y, <span class="number">100</span>)</span>;</span><br><span class="line">    </span><br><span class="line">    CGContextStrokePath<span class="params">(ctx)</span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果图：<br><img src="/images/Quartz2D/curve.png" alt="image"></li>
+</ul>
+<h3 id="三、UIBezierPath类">三、UIBezierPath类</h3><ol>
+<li>使用UIBezierPath类可以创建基于矢量的路径。此类是Core Graphics框架关于path的一个封装。使用此类可以定义简单的形状，如椭圆或者矩形，或者有多个直线和曲线段组成的形状。</li>
+<li>UIBezierPath对象是CGPathRef数据类型的封装。path如果是基于矢量形状的，都用直线和曲线段去创建。我们使用直线段去创建矩形和多边形，使用曲线段去创建弧（arc），圆或者其他复杂的曲线形状。每一段都包括一个或者多个点，绘图命令定义如何去诠释这些点。每一个直线段或者曲线段的结束的地方是下一个的开始的地方。每一个连接的直线或者曲线段的集合成为subpath。一个UIBezierPath对象定义一个完整的路径包括一个或者多个subpaths。</li>
+<li>创建和使用一个path对象的过程是分开的。创建path是第一步，包含一下步骤：<ol>
+<li>创建一个path对象。</li>
+<li>使用方法moveToPoint:去设置初始线段的起点。</li>
+<li>添加line或者curve去定义一个或者多个subpaths。</li>
+<li>改变UIBezierPath对象跟绘图相关的属性。例如，我们可以设置stroked path的属性lineWidth和lineJoinStyle。也可以设置filled path的属性usesEvenOddFillRule。</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>要求：绘制圆角矩形，以及绘制不带箭尾的箭</li>
+<li>代码：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="typename">void</span>)<span class="string">drawRect:</span>(CGRect)rect</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Drawing code</span></span><br><span class="line">    <span class="comment">// 绘制圆角矩形</span></span><br><span class="line">    <span class="comment">// 1. 创建bezier path</span></span><br><span class="line">    UIBezierPath *path = [UIBezierPath <span class="string">bezierPathWithRoundedRect:</span>rect <span class="string">byRoundingCorners:</span>UIRectCornerAllCorners <span class="string">cornerRadii:</span>CGSizeMake(<span class="number">100</span>, <span class="number">50</span>)];</span><br><span class="line">    <span class="comment">// 2. 设置填充颜色</span></span><br><span class="line">    [[UIColor greenColor] setFill];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 填充</span></span><br><span class="line">    [path fill];</span><br><span class="line">    <span class="javadoc">/**</span><br><span class="line">     *  绘制不带箭尾的箭</span><br><span class="line">     *  UIBezierPath</span><br><span class="line">     */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1. 黑色的箭shaft(轴)</span></span><br><span class="line">    UIBezierPath *p = [UIBezierPath bezierPath];</span><br><span class="line">    [p <span class="string">setLineWidth:</span><span class="number">20</span>];</span><br><span class="line">    [p <span class="string">moveToPoint:</span>CGPointMake(<span class="number">100</span>, <span class="number">100</span>)];</span><br><span class="line">    [p <span class="string">addLineToPoint:</span>CGPointMake(<span class="number">100</span>, <span class="number">25</span>)];</span><br><span class="line">    [[UIColor blackColor] setStroke];</span><br><span class="line">    [p stroke];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 红色的箭头(arrow)</span></span><br><span class="line">    [[UIColor redColor] setFill];</span><br><span class="line">    [p <span class="string">moveToPoint:</span>CGPointMake(<span class="number">80</span>, <span class="number">25</span>)];</span><br><span class="line">    [p <span class="string">addLineToPoint:</span>CGPointMake(<span class="number">100</span>, <span class="number">0</span>)];</span><br><span class="line">    [p <span class="string">addLineToPoint:</span>CGPointMake(<span class="number">120</span>, <span class="number">25</span>)];</span><br><span class="line">    [p fill];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>效果图：<br><img src="/images/Quartz2D/bezierpath.png" alt="image"></p>
+</li>
+<li><p>要求：绘制渐变色箭尾的箭</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 坐标系转换(坐标原点转换到（80，0）位置)</span></span><br><span class="line">    CGContextTranslateCTM(ctx, <span class="number">80</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// &gt; 设置箭尾的三角区为不绘制区域(clipping)</span></span><br><span class="line">    <span class="comment">// 保存初始状态</span></span><br><span class="line">    CGContextSaveGState(ctx);</span><br><span class="line">    </span><br><span class="line">    CGContextMoveToPoint(ctx, <span class="number">10</span>, <span class="number">100</span>);</span><br><span class="line">    CGContextAddLineToPoint(ctx, <span class="number">20</span>, <span class="number">90</span>);</span><br><span class="line">    CGContextAddLineToPoint(ctx, <span class="number">30</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="comment">// CGContextGetClipBoundingBox自动绘制一个包含上述三角形的矩形区域</span></span><br><span class="line">    <span class="built_in">CGRect</span> flipRect = CGContextGetClipBoundingBox(ctx);</span><br><span class="line">    </span><br><span class="line">    CGContextAddRect(ctx, flipRect);</span><br><span class="line">    <span class="comment">// 以奇偶填充法填充</span></span><br><span class="line">    CGContextEOClip(ctx);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &gt; 绘制箭杆</span></span><br><span class="line">    CGContextSetStrokeColorWithColor(ctx, [<span class="built_in">UIColor</span> blackColor]<span class="variable">.CGColor</span>);</span><br><span class="line">    CGContextSetLineWidth(ctx, <span class="number">20</span>);</span><br><span class="line">    </span><br><span class="line">    CGContextMoveToPoint(ctx, <span class="number">20</span>, <span class="number">100</span>);</span><br><span class="line">    CGContextAddLineToPoint(ctx, <span class="number">20</span>, <span class="number">25</span>);</span><br><span class="line">    <span class="comment">// CGContextReplacePathWithStrokedPath将线转换为矩形区域</span></span><br><span class="line">    CGContextReplacePathWithStrokedPath(ctx);</span><br><span class="line">    </span><br><span class="line">    CGContextClip(ctx);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//    CGContextStrokePath(ctx);</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 给shaft添加渐变</span></span><br><span class="line">    </span><br><span class="line">    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();</span><br><span class="line">    <span class="comment">// 设置RGB以及Alpha</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">CGFloat</span> components[] = &#123;<span class="number">0.6</span>, <span class="number">0.6</span>, <span class="number">0.6</span>, <span class="number">0.6</span>,</span><br><span class="line">                                    <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>,</span><br><span class="line">                                    <span class="number">0.6</span>,<span class="number">0.6</span>,<span class="number">0.6</span>,<span class="number">0.6</span>&#125;;</span><br><span class="line">    <span class="comment">// 设置渐变位置</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">CGFloat</span> locations[] = &#123;<span class="number">0</span>, <span class="number">0.618</span>, <span class="number">1</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, components, locations, <span class="number">3</span>);</span><br><span class="line">    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(<span class="number">10</span>, <span class="number">100</span>), CGPointMake(<span class="number">30</span>, <span class="number">100</span>), <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 回到初始状态</span></span><br><span class="line">    CGContextRestoreGState(ctx);</span><br><span class="line">    <span class="comment">// 回收颜色空间</span></span><br><span class="line">    CGColorSpaceRelease(colorSpace);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// &gt; 箭头</span></span><br><span class="line">    CGContextSetFillColorWithColor(ctx, [<span class="built_in">UIColor</span> redColor]<span class="variable">.CGColor</span>);</span><br><span class="line">    </span><br><span class="line">    CGContextMoveToPoint(ctx, <span class="number">0</span>, <span class="number">25</span>);</span><br><span class="line">    CGContextAddLineToPoint(ctx, <span class="number">20</span>, <span class="number">0</span>);</span><br><span class="line">    CGContextAddLineToPoint(ctx, <span class="number">40</span>, <span class="number">25</span>);</span><br><span class="line">    </span><br><span class="line">    CGContextFillPath(ctx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效果图：<br><img src="/images/Quartz2D/arrowWithGradient.png" alt="image"></p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Quartz2D使用/">Quartz2D使用</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/03/14/XML-JSON/" title="XML&amp;JSON" itemprop="url">XML&amp;JSON</a>
   </h1>
   <p class="article-author">By
@@ -343,67 +504,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/07/04/SVN常用命令集合/" title="SVN常用命令集合" itemprop="url">SVN常用命令集合</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
-		
-  <p class="article-time">
-    <time datetime="2014-07-04T01:16:36.000Z" itemprop="datePublished"> 发表于 2014-07-04</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <ol>
-<li><p>SVN常用命令集</p>
-<blockquote>
-<p>svn info 查询svn根目录的信息，这个命令当你想知道某个svn目录是从哪个服务器上下来的时候特别有效<br>svn add 增加一个文件到根目录里，注意要用svn commit上传这个修改<br>svn status 查询当前目录下文件修改的情况，a表示增加，M表示修改<br>svn diff 查看本目录下所有的文件有哪些区别，当然可以指定到文件名<br>svn commit -m “fix bug” file上传某个文件的修改，并增加注释<br>svn ci 上传所有的修改，会提示你添加修改记录<br>svn log file 查询某个文件的修改记录<br>svn checkout 从svn服务器上去一个目录，带svn信息<br>svn export 从svn服务器上取出一个目录，仅源文件，没有讨厌的.svn信息<br>svn revert 回滚本地所有的未上传的所有修改，慎用，回复该本地所有的修改操作。可一次回滚一个目录或者文件<br>svn revert file —depth=infinity 回滚该目录下的所有文件<br>svn diff -r3 rules.txt 将本地的working目录下的文件和服务器的r3版本之间进行比较<br>svn diff -r 3:2 rules.txt 比较服务器上得r2版本和r3版本    </p>
-</blockquote>
-</li>
-</ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/SVN/">SVN</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
@@ -433,6 +533,10 @@
 		
 			
 				<li><a href="/tags/故事一则/" title="故事一则">故事一则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/手写Button设置/" title="手写Button设置">手写Button设置<sup>1</sup></a></li>
 			
 		
 			

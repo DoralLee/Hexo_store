@@ -80,6 +80,71 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/12/手写代码UIButton图片和文字位置的设置/" title="手写代码UIButton图片和文字位置的设置" itemprop="url">手写代码UIButton图片和文字位置的设置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-12T05:39:25.000Z" itemprop="datePublished"> 发表于 2015-08-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p>首先对button的初始化，以及图片和文字的设置</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加放弃和留下按钮</span></span><br><span class="line">   UIButton *dropBtn = [UIButton <span class="string">buttonWithType:</span>UIButtonTypeCustom];</span><br><span class="line">   dropBtn.frame = CGRectMake(<span class="number">1</span>*WIDHT/<span class="number">5</span>, getViewHeight(foodNameLabel)+<span class="number">50</span>, <span class="number">60</span>, <span class="number">60</span>);</span><br><span class="line">   [dropBtn <span class="string">setImage:</span>[UIImage <span class="string">imageNamed:</span>@<span class="string">"icon_No@2x.png"</span>] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line"></span><br><span class="line">   dropBtn.titleLabel.font = [UIFont <span class="string">systemFontOfSize:</span><span class="number">15</span>];</span><br><span class="line">   [dropBtn <span class="string">setTitleColor:</span>[UIColor blackColor] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   [dropBtn <span class="string">setTitle:</span>@<span class="string">"放弃"</span> <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   dropBtn.imageEdgeInsets = UIEdgeInsetsMake(<span class="number">0</span>, -<span class="number">15</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   dropBtn.titleEdgeInsets = UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">5</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   [dropBtn <span class="string">addTarget:</span>self <span class="string">action:</span><span class="annotation">@selector</span>(<span class="string">dropAction:</span>) <span class="string">forControlEvents:</span>UIControlEventTouchUpInside];</span><br><span class="line">   </span><br><span class="line">   [self.view <span class="string">addSubview:</span>dropBtn];</span><br><span class="line">   </span><br><span class="line">   UIButton *keepBtn = [UIButton <span class="string">buttonWithType:</span>UIButtonTypeCustom];</span><br><span class="line">   keepBtn.frame = CGRectMake(WIDHT - <span class="number">1</span>*WIDHT/<span class="number">5</span> - <span class="number">60</span>, getViewHeight(foodNameLabel)+<span class="number">50</span>, <span class="number">60</span>, <span class="number">60</span>);</span><br><span class="line">   [keepBtn <span class="string">setImage:</span>[UIImage <span class="string">imageNamed:</span>@<span class="string">"icon_OK@2x.png"</span>] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   </span><br><span class="line">   keepBtn.titleLabel.font = [UIFont <span class="string">systemFontOfSize:</span><span class="number">15</span>];</span><br><span class="line">   [keepBtn <span class="string">setTitleColor:</span>[UIColor blackColor] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   [keepBtn <span class="string">setTitle:</span>@<span class="string">"留下"</span> <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   keepBtn.imageEdgeInsets = UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, -<span class="number">15</span>);</span><br><span class="line">   keepBtn.titleEdgeInsets = UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   [keepBtn <span class="string">addTarget:</span>self <span class="string">action:</span><span class="annotation">@selector</span>(<span class="string">keepAction:</span>) <span class="string">forControlEvents:</span>UIControlEventTouchUpInside];</span><br><span class="line">   </span><br><span class="line">   [self.view <span class="string">addSubview:</span>keepBtn];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，<code>‘-’加到数字前就是指负向偏移，‘+’是正向偏移</code></p>
+ <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keepBtn.<span class="variable">imageEdgeInsets =</span> UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, -<span class="number">15</span>);</span><br><span class="line">keepBtn.<span class="variable">titleEdgeInsets =</span> UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p> 我所实现的效果图如下：<br> <img src="/images/手写UIButton/20150812.png" alt="image"><br> 具体需要实现什么效果还是需要你自己把握的</p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/手写Button设置/">手写Button设置</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/12/Xcode已安装插件的删除/" title="Xcode已安装插件的删除" itemprop="url">Xcode已安装插件的删除</a>
   </h1>
   <p class="article-author">By
@@ -198,88 +263,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/21/OC数组排序/" title="OC数组排序" itemprop="url">OC数组排序</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-21T05:47:56.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>大体上，OC中常用的数组排序有以下几种方法：<br>sortedArrayUsingSelector:<br>sortedArrayUsingComparator:<br>sortedArrayUsingDescriptors:</p>
-</blockquote>
-<h3 id="简单排序（sortedArrayUsingSelector:）">简单排序（sortedArrayUsingSelector:）</h3><ol>
-<li><p>简单排序</p>
-<p> 如果只是对字符串的排序，可以利用sortedArrayUsingSelector:方法就可以了，代码如下：</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单排序</span></span><br><span class="line"><span class="keyword">void</span> sortArray1()&#123;</span><br><span class="line">   <span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"abc"</span>,<span class="string">@"456"</span>,<span class="string">@"123"</span>,<span class="string">@"789"</span>,<span class="string">@"ef"</span>, <span class="literal">nil</span>];</span><br><span class="line">   <span class="built_in">NSArray</span> *sortedArray = [array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"排序后:%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 除了字符串自带的compare:方法，也可以自己写compare:方法，进行对象的比较；如下：</p>
-<p> 首先是新建了Person类，实现方法如下：</p>
- <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import "Person.h"</span></span><br><span class="line">@implementation <span class="type">Person</span></span><br><span class="line">//直接实现静态方法，获取带有name和age的<span class="type">Person</span>对象</span><br><span class="line">+(<span class="type">Person</span> *)personWithAge:(<span class="type">int</span>) age withName:(<span class="type">NSString</span> *)name&#123;</span><br><span class="line">   <span class="type">Person</span> *person = [[<span class="type">Person</span> alloc] init];</span><br><span class="line">   person.age = age;</span><br><span class="line">   person.name = name;</span><br><span class="line">   <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//自定义排序方法</span><br><span class="line">-(<span class="type">NSComparisonResult</span>)comparePerson:(<span class="type">Person</span> *)person&#123;</span><br><span class="line"> //默认按年龄排序</span><br><span class="line">   <span class="type">NSComparisonResult</span> <span class="literal">result</span> = [[<span class="type">NSNumber</span> numberWithInt:person.age] compare:[<span class="type">NSNumber</span> numberWithInt:self.age]];//注意:基本数据类型要进行数据转换</span><br><span class="line"> //如果年龄一样，就按照名字排序</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">NSOrderedSame</span>) &#123;</span><br><span class="line">       <span class="literal">result</span> = [self.name compare:person.name];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p> 主函数代码如下：</p>
- <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="typename">void</span> sortArray2()&#123;</span><br><span class="line">    Person *p1 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"zhangsan"</span>];</span><br><span class="line">    Person *p2 = [Person <span class="string">personWithAge:</span><span class="number">21</span> <span class="string">withName:</span>@<span class="string">"lisi"</span>];</span><br><span class="line">    Person *p3 = [Person <span class="string">personWithAge:</span><span class="number">24</span> <span class="string">withName:</span>@<span class="string">"wangwu"</span>];</span><br><span class="line">    Person *p4 = [Person <span class="string">personWithAge:</span><span class="number">24</span> <span class="string">withName:</span>@<span class="string">"liwu"</span>];</span><br><span class="line">    Person *p5 = [Person <span class="string">personWithAge:</span><span class="number">20</span> <span class="string">withName:</span>@<span class="string">"liwu"</span>];</span><br><span class="line">    NSArray *array = [NSArray <span class="string">arrayWithObjects:</span>p1,p2,p3,p4,p5, nil];</span><br><span class="line">    NSArray *sortedArray = [array <span class="string">sortedArrayUsingSelector:</span><span class="annotation">@selector</span>(<span class="string">comparePerson:</span>)];</span><br><span class="line">    NSLog(@<span class="string">"排序后:%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用block语法（sortedArrayUsingComparator:）</p>
-<p> 苹果官方提供了block语法，比较方便。其中数组排序可以用sortedArrayUsingComparator:方法，代码如下：</p>
- <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> sortArray3()&#123;</span><br><span class="line">    <span class="type">NSArray</span> *<span class="type">array</span> = [<span class="type">NSArray</span> arrayWithObjects:@<span class="string">"1bc"</span>,@<span class="string">"4b6"</span>,@<span class="string">"123"</span>,@<span class="string">"789"</span>,@<span class="string">"3ef"</span>, <span class="keyword">nil</span>];</span><br><span class="line">    <span class="type">NSArray</span> *sortedArray = [<span class="type">array</span> sortedArrayUsingComparator:^<span class="type">NSComparisonResult</span>(id obj1, id obj2) &#123;</span><br><span class="line"> </span><br><span class="line">   //这里的代码可以参照上面compare:默认的排序方法，也可以把自定义的方法写在这里，给对象排序</span><br><span class="line">        <span class="type">NSComparisonResult</span> <span class="literal">result</span> = [obj1 compare:obj2];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;];</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"排序后:%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>高级排序（sortedArrayUsingDescriptors:）</p>
-<p> Person类里面有另外一个类的变量，比如说Person类除了name，age变量，还有一辆车Car类型，Car类里面有个name属性。对Person对象进行排序，有这样的要求：按照Car的name排序，如果是同一辆车，也就是Car的name相同，name再按照年龄进行排序，如果年龄也相同，最后按照Person的name进行排序。</p>
-<p> 上面这样就要使用第三种方法，利用排序描述其，不过说，看API介绍。如下：<br> 首先写个Car类，实现类Car.m代码如下：</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span></span></span><br><span class="line"> </span><br><span class="line">+(Car *)initWithName:(<span class="built_in">NSString</span> *)name&#123;</span><br><span class="line">    Car *car = [Car alloc] init];</span><br><span class="line">    car<span class="variable">.name</span> = name;</span><br><span class="line">    <span class="keyword">return</span> car;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p> 然后改写Person类，实现类Person.m代码如下：</p>
- <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> <span class="string">"Person.h"</span></span><br><span class="line">#<span class="keyword">import</span> <span class="string">"Car.h"</span></span><br><span class="line"><span class="annotation">@implementation</span> Person</span><br><span class="line"> </span><br><span class="line">+(Person *)<span class="string">personWithAge:</span>(<span class="typename">int</span>)age <span class="string">withName:</span>(NSString *)name <span class="string">withCar:</span>(Car *)car&#123;</span><br><span class="line">    Person *person = [[Person alloc] init];</span><br><span class="line">    person.age = age;</span><br><span class="line">    person.name = name;</span><br><span class="line">    person.car = car;</span><br><span class="line">    <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//这里重写description方法，用于最后测试排序结果显示</span></span><br><span class="line">-(NSString *)description&#123;</span><br><span class="line">    <span class="keyword">return</span> [NSString <span class="string">stringWithFormat:</span>@<span class="string">"age is %zi , name is %@, car is %@"</span>,_age,_name,_car.name];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="annotation">@end</span></span><br></pre></td></tr></table></figure>
-<p> 主函数代码如下：</p>
- <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="typename">void</span> sortArray4()&#123;</span><br><span class="line">        <span class="comment">//首先来3辆车，分别是奥迪、劳斯莱斯、宝马</span></span><br><span class="line">        Car *car1 = [Car <span class="string">initWithName:</span>@<span class="string">"Audio"</span>];</span><br><span class="line">        Car *car2 = [Car <span class="string">initWithName:</span>@<span class="string">"Rolls-Royce"</span>];</span><br><span class="line">        Car *car3 = [Car <span class="string">initWithName:</span>@<span class="string">"BMW"</span>];</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//再来5个Person，每人送辆车，分别为car2、car1、car1、car3、car2</span></span><br><span class="line">        Person *p1 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"zhangsan"</span> <span class="string">withCar:</span>car2];</span><br><span class="line">        Person *p2 = [Person <span class="string">personWithAge:</span><span class="number">21</span> <span class="string">withName:</span>@<span class="string">"zhangsan"</span> <span class="string">withCar:</span>car1];</span><br><span class="line">        Person *p3 = [Person <span class="string">personWithAge:</span><span class="number">24</span> <span class="string">withName:</span>@<span class="string">"lisi"</span> <span class="string">withCar:</span>car1];</span><br><span class="line">        Person *p4 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"wangwu"</span> <span class="string">withCar:</span>car3];</span><br><span class="line">        Person *p5 = [Person <span class="string">personWithAge:</span><span class="number">23</span> <span class="string">withName:</span>@<span class="string">"wangwu"</span> <span class="string">withCar:</span>car2];</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">        <span class="comment">//加入数组</span></span><br><span class="line">        NSArray *array = [NSArray <span class="string">arrayWithObjects:</span>p1,p2,p3,p4,p5, nil];</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//构建排序描述器</span></span><br><span class="line">        NSSortDescriptor *carNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"car.name"</span> <span class="string">ascending:</span>YES];</span><br><span class="line">        NSSortDescriptor *personNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"name"</span> <span class="string">ascending:</span>YES];</span><br><span class="line">        NSSortDescriptor *personAgeDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"age"</span> <span class="string">ascending:</span>YES];</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//把排序描述器放进数组里，放入的顺序就是你想要排序的顺序</span></span><br><span class="line">        <span class="comment">//我这里是：首先按照年龄排序，然后是车的名字，最后是按照人的名字</span></span><br><span class="line">        NSArray *descriptorArray = [NSArray <span class="string">arrayWithObjects:</span>personAgeDesc,carNameDesc,personNameDesc, nil];</span><br><span class="line">         </span><br><span class="line">        NSArray *sortedArray = [array <span class="string">sortedArrayUsingDescriptors:</span> descriptorArray];</span><br><span class="line">        NSLog(@<span class="string">"%@"</span>,sortedArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 结果如下：<br> <img src="/images/数组排序/20150721.png" alt="image"></p>
-</li>
-</ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/数组排序/">数组排序</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -309,6 +292,10 @@
 		
 			
 				<li><a href="/tags/故事一则/" title="故事一则">故事一则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/手写Button设置/" title="手写Button设置">手写Button设置<sup>1</sup></a></li>
 			
 		
 			
