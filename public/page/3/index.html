@@ -80,6 +80,103 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/06/面相对象思想——个人理解/" title="面向对象思想——个人理解" itemprop="url">面向对象思想——个人理解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-06T09:28:23.000Z" itemprop="datePublished"> 发表于 2015-05-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p>基本概念</p>
+<p> 1.1 类与对象的初探</p>
+<pre><code> “这个世界时由什么组成的？”这个问题如果让不同的人来回答会得到不同的答案。如果是一个化学家，他也许会告诉你“还用问么，这个世界是由分子、原子、离子等等化学物质组成的”。如果是一个画家呢？他也许会告诉你，“这个世界是由不同的颜色所组成的”<span class="attribute">...</span><span class="attribute">...</span>呵呵，众说纷纭吧！但如果让一个分类学家来考虑问题就有趣的多了，他会告诉你“这个世界是由不同类型的物与事所构成的”好！作为面向对象的程序员来说，我们要站在分类学家的角度去考虑问题！是的，这个世界是由动物、植物等组成的。动物又分为单细胞动物、多细胞动物、哺乳动物等等，哺乳动物又分为人、大象、老虎<span class="attribute">...</span><span class="attribute">...</span>就这样的分下去了！
+
+现在，站在抽象的角度，我们给“类”下个定义吧！我的意思是，站在抽象的角度，你回答我“什么是人类？”首先让我们来看看人类所具有的一些特征，这个特征包括属性（一些参数，数值）以及方法（一些行为，他能干什么！）。每个人都身高、体重、年龄、血型等等一些属性。人会劳动、人都会直立行走、人都会用自己的头脑去创造工具等等这些方法。“人类”只是一个抽象的概念，它仅仅是一个概念，它使不存在的实体！但是所有具备“人类”这个群体的属性与方法的对象都叫人！这个对象“人”是实际存在的实体！每个人都是这个群体的一个对象。老虎为什么不是人？因为它不具备人类这个群体的属性与方法，老虎不会直立行走，不会使用工具等等！所以说老虎不是人！
+
+由此可见————类描述了一组有相同特性（属性）和相同行为（方法）的对象。在程序中，类实际上就是数据类型！例如：整数，小树等等。整数也有一组特性和行为。面型过程的语言与面向对象的语言的区别就在于，面相过程的语言不允许程序员自己定义数据类型，而只能使用程序中内置的数据类型！而为了模拟真实世界，为了更好地解决问题，往往我们需要创建解决问题所必需的数据类型！面向对象编程为我们提供了解决方案。
+</code></pre><p> 1.2 内置数据类型与函数</p>
+<pre><code>计算机程序在存储数据时必须跟踪3个基本属性为：
+1. 信息存储在何处；
+2. 存储的值是多少；
+3. 存储的信息是什么类型的；
+
+让我们来看看编程语言的内置数据类型都有哪些！（这个不大好说，因为每门语言都有自己独特的数据类型，但这毕竟是少数，比如在JAVA中有byte类型的数据，而在C++中就没有）比如整数“int”，浮点类型的数据“float”！字符串“string”，以及数组还有结构体等等。然而在写程序的时候，根据需要我们会创建一个类型的变量或常量。例如：忧郁我们需要创建一个整形的变量i为5，我们就可以这样做，int i = 5；而根据需要我很有可能改变i的值，也就是从新给它赋值，比如让它等于6，就可以在所需的地方改为i = 6；由此我们知道，在“值”上可以发生变化的量就叫变量。不会发生变化的量就叫做常量了，在C++中用count关键字来声明，而在JAVA中则使用final关键字来声明。由于不同语言的声明格式不一样，这里就不做一一介绍，详细的内容清查阅相关书籍！
+
+在这里我们主要讨论一下函数，我们可以把函数想象成一个“实现某种特定功能的黑匣子”————这个功能是由你来设定的，举个例子说：现在我问你“2+3等于多少？”我相信你能很快的回答我等于5。让我们来分析分析这句话包含什么信息！首先我要把你的大脑想象成是一个黑匣子，我并不知道也没有必要知道你的大脑是如何工作的（也就是怎么运算的），我关心的只是我传给你的事什么信息？你对信息做了哪些处理？以及你返回给我的什么信息？需要提醒你一下的是每个方法都会返回一个信息给调用者的，除了构造函数外。我现在需要把自己当做是一名程序员，而你呢？当然就是计算机了！计算机可没有人那么聪明，它只会按事先约好的特定的格式运行，我想让它具有如上所述的功能，我就要先定义这个黑匣子！首先我要告诉这个黑匣子会有两个整数值给你（这就是所谓的参数，是程序员需要给黑匣子的信息），然后就要定义这个黑匣子内部实现这两个整数相加的运算（这就是黑匣子对数据所做的加工，根据需要，你可以任何的加工）。最后再标注它返回给我一个同样是整型的数值（这时黑匣子返回给程序员的信息）。一个函数就这样定义完了，让我们来看看书写格式：
+
+<span class="comment"><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addnum</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+</code></pre><p> 具体的含义是这样的：</p>
+<pre><code><span class="keyword">int</span>(返回值类型) 
+addnum (方法名称)
+(<span class="keyword">int</span> x, <span class="keyword">int</span> y)(传入的参数)
+<span class="keyword">return</span> x+y;(内部实现方法，实现相加运算，并<span class="keyword">return</span>返回给调用者结果)
+
+就像上面一样，因为我问你，你才会回答我，如果我不问你，你就不用回答我！在计算机中也一样，定义好这个函数在哪里调用呢？我只能告诉你，哪里需要就在哪里调用！
+
+关于函数的话题还有很多很多，这里就不一一介绍了，我的目的就是先说说函数是怎么一回事儿！为下面的讨论作铺垫！
+</code></pre><p> 1.3 指针以及引用</p>
+<pre><code><span class="comment">指针及引用是在C</span><span class="literal">+</span><span class="literal">+</span><span class="comment">中有的，JAVA中没有。JAVA中取消了对内存的操作，随之而来的事也取消了操作符重载的操作。不过在稍后还是会介绍一些操作符重载的功能等。引用主要还是用在函数参数的传递上。所以在这里就不做过多的介绍了。</span>
+</code></pre></li>
+<li><p>深入探讨面相对对象</p>
+<p> 2.1 “类型”的内部的细节</p>
+<pre><code>面相对象的变成语言最大的特色就是可以编写自己所需的数据类型，以更好的解决问题。就像前面所说的，人这个“类”是什么也做不了的，因为“人类”只是一个抽象的概念，它不是实实在在的“东西”，而这个“东西”就是所谓的对象。只有人这个“对象”才能去工作。而类呢？类是对象的描述！对象从类中产生出来！此时，对象具有类所描述的所有的属性以及方法。再来举个例子！例如电视机，电视机都有工作原理图，那么什么电视机呢？只要它能够实现工作原理图的所有功能的物体，我们都叫它电视机。你想想是不是这么一回事儿？可是，电视机原理图是不能工作的，也就是这个原理图不能收看节目，只有电视机这个“实体”----即所谓的“对象”才能收看节目，也就是说，从类生成出对象之后才算得上是真正的有意义！才能开始工作。此时，电视机拥有电视原理图所描述的所有的属性及方法！明白了吧，呵呵！
+
+类是属性与方法的集合。而这些属性与方法可以被声明为私有的（<span class="keyword">private</span>），公共的（<span class="keyword">public</span>）或是受保护（<span class="keyword">protected</span>）的，他们描述了对类成员的访问控制。下面介绍一下：
+<span class="number">1.</span> 公共的（<span class="keyword">public</span>）：把变量声明为公共类型的之后，那么就可以通过对象来直接访问，一切都是暴露无遗的！也就是说，你的信用卡密码别人也能够直接得到。
+<span class="number">2.</span> 私有的（<span class="keyword">private</span>）：如果把变量声明为私有的情况就好多了，想要得到我的信用卡面，对象必须要调用专用的方法才能够得到。
+<span class="number">3.</span> 受保护的（<span class="keyword">protected</span>）：介绍继承时在讨论。
+<span class="number">4.</span> 默认控制访问符（friendly）：Java中又而C++中没有。
+为了实现数据的封装，提高数据的安全性，我们一般会把类的属性声明为私有的，而把类的方法声明为公共的。这样，对象能够直接调用类中定义的所有方法，当对象想要修改或得到自己的属性的时候就必须要调用以定义好的专用的方法才能够实现。你想想，你会把你的信用卡密码公布出来吗？所以，我们提倡的事：“对象调方法，方法改属性”；
+</code></pre></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/面向对象思想/">面向对象思想</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/30/迎着缺陷奔跑/" title="迎着缺陷奔跑" itemprop="url">迎着缺陷奔跑</a>
   </h1>
   <p class="article-author">By
@@ -241,110 +338,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/17/UINavigationController详解与使用（一）添加UIButtonItem/" title="UINavigationController详解与使用（一）添加UIButtonItem" itemprop="url">UINavigationController详解与使用（一）添加UIButtonItem</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-17T08:39:03.000Z" itemprop="datePublished"> 发表于 2015-04-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h4 id="UINavigationController导航控制器如何使用">UINavigationController导航控制器如何使用</h4><ol>
-<li><p>UINavigationController可以翻译为导航控制器，在iOS里经常用到。</p>
-<p> 我们看看它如何使用：</p>
-<blockquote>
-<p>下面的图显示了导航控制器的流程。最左侧是根视图，当用户点击其中的General项时，General视图会滑入屏幕；当用户继续点击Auto-Lock项是，Auto-Lock视图将滑入屏幕。相应地，在对象管理上，导航控制器使用了导航堆栈。根视图控制器在堆栈最底层，接下来入栈的是General视图控制器和Auto-Lock视图控制器。可以调用pushViewControllerAnimated:方法将视图控制器推入栈顶，也可以调用popViewControllerAnimated:方法将视图控制器弹出堆栈。</p>
-</blockquote>
-<p> <img src="/images/UINavigationVC/1.png" alt="image"></p>
-</li>
-<li><p>UINavigationController的结构组成</p>
-<p> 看下图，UINavigationController有Navigation bar，Navigation View，Navigation toolbar等组成。</p>
-<p> <img src="/images/UINavigationVC/2.png" alt="image"></p>
-<p> 现在我们建立一个例子，看看如何使用UINavigationController</p>
-</li>
-<li><p>新建一个项目</p>
-<p> 命名为UINavigationControllerDemo，为了更好理解UINavigationController，我们选择Empty Application模板</p>
-<p> <img src="/images/UINavigationVC/3.png" alt="image"></p>
-</li>
-<li><p>创建一个View Controller，命名为RootViewController:依次选择File-New-New File，默认勾上WithXIB for user interface</p>
-<p> <img src="/images/UINavigationVC/4.png" alt="image"><br> 选择正确位置创建完成，这时项目里多了三个文件，分别是RootViewController.h RootViewController.m RootViewController.xib文件。<br> 打开RootViewController.xib，添加一个按钮控件，按钮Button改成：Goto SecondView，为跳转作准备</p>
-<p> <img src="/images/UINavigationVC/5.png" alt="image"></p>
-</li>
-<li><p>打开AppDelegate.h，向其中添加属性：</p>
-<blockquote>
-<p>@property(strong, nonatomic)  UINavigationController *navController;</p>
-</blockquote>
-<p> 添加后AppDelegate.h文件代码如下：</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">ViewController</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> : <span class="title">UIResponder</span> &lt;<span class="title">UIApplicationDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">UIWindow</span> *window;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) ViewController *viewController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">UINavigationController</span> *navController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在AppDelegate.m文件的didFinishLaunchingWithOptions方法中创建添加navController，RootViewController视图。</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.window</span> = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</span><br><span class="line">    RootViewController *rootView = [[RootViewController alloc] init];</span><br><span class="line">    rootView<span class="variable">.title</span> = <span class="string">@"Root View"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span><span class="variable">.navController</span> = [[<span class="built_in">UINavigationController</span> alloc] init];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.navController</span> pushViewController:rootView animated:<span class="literal">YES</span>];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.window</span> addSubview:<span class="keyword">self</span><span class="variable">.navController</span><span class="variable">.view</span>];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.window</span> makeKeyAndVisible];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 给rootView的title命名为RootView，好识别View直接的切换关系。用pushViewController把rootView加入到navController的视图栈中。</p>
-</li>
-<li><p>现在Root视图添加完成</p>
-<p> 看看效果：<br> <img src="/images/UINavigationVC/6.png" alt="image"><br> 现在还没有Navigation bar。只有title</p>
-</li>
-<li><p>添加UIBarButtonItem</p>
-<p> bar ButtonItem分左右UIBarButtonItem。我们把左右的都添加上去。<br> 在RootViewController.m中添加代码如下：</p>
- <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="typename">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"></span><br><span class="line">    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] <span class="string">initWithBarButtonSystemItem:</span>UIBarButtonSystemItemAction <span class="string">target:</span>self <span class="string">action:</span><span class="annotation">@selector</span>(<span class="string">selectLeftAction:</span>)];</span><br><span class="line">    self.navigationItem.leftBarButtonItem = leftButton;</span><br><span class="line">    </span><br><span class="line">    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] <span class="string">initWithBarButtonSystemItem:</span>UIBarButtonSystemItemAdd  <span class="string">target:</span>self <span class="string">action:</span><span class="annotation">@selector</span>(<span class="string">selectRightAction:</span>)];</span><br><span class="line">    self.navigationItem.rightBarButtonItem = rightButton;&lt;p <span class="class"><span class="keyword">class</span>="<span class="title">p1</span>"&gt;&#125;&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p> 这样添加了UIBarButtonItem了，效果如下：<br> <img src="/images/UINavigationVC/7.png" alt="image"></p>
-<p> 这里重点介绍下：</p>
-<pre><code>UIBarButtonItem *leftButton = [UIBarButtonItem alloc] <span class="string">initWithBarButtonSystemItem:</span>UIBarButtonSystemItemAction <span class="string">target:</span>self <span class="string">Actin:</span>@<span class="annotation">@selector</span>(<span class="string">selectLeftAction:</span>)];
-</code></pre><p> UIBarButtonSystemItemAction的风格，这时系统自带的按钮风格，看下图，你不用一个个实验，你也知道想用的那个Item，如下图：<br> <img src="/images/UINavigationVC/8.png" alt="image"></p>
-</li>
-<li><p>响应UIBarButtonItem的事件的实现</p>
-<p> 我们在action：@selector（selectLeftAction:）;<br> action添加了SelectLeftAction和selectRightAction在RootViewController.m文件中添加代码实现：</p>
- <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="typename">void</span>)<span class="string">selectLeftAction:</span>(id)sender</span><br><span class="line">&#123;</span><br><span class="line">    UIAlertView *alter = [[UIAlertView alloc] <span class="string">initWithTitle:</span>@<span class="string">"提示"</span> <span class="string">message:</span>@<span class="string">"你点击了导航栏左按钮"</span> <span class="string">delegate:</span>self  <span class="string">cancelButtonTitle:</span>@<span class="string">"确定"</span> <span class="string">otherButtonTitles:</span>nil, nil];</span><br><span class="line">    [alter show];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="typename">void</span>)<span class="string">selectRightAction:</span>(id)sender</span><br><span class="line">&#123;</span><br><span class="line">    UIAlertView *alter = [[UIAlertView alloc] <span class="string">initWithTitle:</span>@<span class="string">"提示"</span> <span class="string">message:</span>@<span class="string">"你点击了导航栏右按钮"</span> <span class="string">delegate:</span>self  <span class="string">cancelButtonTitle:</span>@<span class="string">"确定"</span> <span class="string">otherButtonTitles:</span>nil, nil];</span><br><span class="line">    [alter show];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 这样在点击左右的UIBarButtonItem时，弹出提示：<br> <img src="/images/UINavigationVC/9.png" alt="image"></p>
-<p> 本篇先到UIBarButtonItem，下篇讲解页面跳转与ToolBar</p>
-</li>
-</ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/NavController-UIButtonItem/">NavController-UIButtonItem</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
@@ -365,7 +358,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
+				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
 			
 		
 			
@@ -389,11 +382,15 @@
 			
 		
 			
-				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
+				<li><a href="/tags/Pch文件/" title=".Pch文件">.Pch文件<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/面向对象思想/" title="面向对象思想">面向对象思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
 			
 		
 			

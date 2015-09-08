@@ -35,8 +35,7 @@ tags: 手写Button设置
 
 	```
 	
-2. 以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，`‘-’加到数字前就是指负向偏移，‘+’是正向偏移`
-
+2. 以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，`‘-’加到数字前就是指负向偏移，‘+’是正向偏移`，其实imageEdgeInsets中的第一个数值是对图片对于button上边距的距离，第二个数值是对图片对于button左边距的距离，第三个数值是对图片对于button下边距的距离，第四个数值是对图片对于button的右边距的距离，而titleEdgeInsets的设置类似的。
 	```
 	keepBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 35, 0, -15);
 	keepBtn.titleEdgeInsets = UIEdgeInsetsMake( 0, -65, 0, 0);

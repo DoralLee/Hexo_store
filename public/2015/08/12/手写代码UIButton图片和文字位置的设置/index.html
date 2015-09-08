@@ -108,7 +108,7 @@
 </li>
 </ol>
 <ol>
-<li><p>以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，<code>‘-’加到数字前就是指负向偏移，‘+’是正向偏移</code></p>
+<li><p>以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，<code>‘-’加到数字前就是指负向偏移，‘+’是正向偏移</code>，其实imageEdgeInsets中的第一个数值是对图片对于button上边距的距离，第二个数值是对图片对于button左边距的距离，第三个数值是对图片对于button下边距的距离，第四个数值是对图片对于button的右边距的距离，而titleEdgeInsets的设置类似的。</p>
  <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keepBtn.<span class="variable">imageEdgeInsets =</span> UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, -<span class="number">15</span>);</span><br><span class="line">keepBtn.<span class="variable">titleEdgeInsets =</span> UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 <p> 我所实现的效果图如下：<br> <img src="/images/手写UIButton/20150812.png" alt="image"><br> 具体需要实现什么效果还是需要你自己把握的</p>
 </li>
@@ -143,6 +143,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/09/08/iOS-Pch文件的使用/" title="iOS--Pch文件的使用">
+  <strong>上一篇：</strong><br/>
+  <span>
+  iOS--Pch文件的使用</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/08/12/Xcode已安装插件的删除/"  title="Xcode已安装插件的删除">
@@ -178,7 +186,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
+				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
 			
 		
 			
@@ -202,11 +210,15 @@
 			
 		
 			
-				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
+				<li><a href="/tags/Pch文件/" title=".Pch文件">.Pch文件<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/面向对象思想/" title="面向对象思想">面向对象思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
 			
 		
 			

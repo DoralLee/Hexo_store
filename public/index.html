@@ -80,6 +80,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/08/iOS-Pch文件的使用/" title="iOS--Pch文件的使用" itemprop="url">iOS--Pch文件的使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-08T06:13:53.000Z" itemprop="datePublished"> 发表于 2015-09-08</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="Xcode6添加pch文件">Xcode6添加pch文件</h3><p><code>前言：</code>Xcode6中不在为开发者自动创建pch文件，在pch文件中我们可以添加一些琐碎的宏定义，在项目中任何地方都可以引用，加快了编译的速度</p>
+<ol>
+<li><p>Xcode6之后的版本都是需要自己添加的,步骤如下：</p>
+<p> <img src="/images/pch/1.png" alt="image"></p>
+</li>
+<li><p>随后需要进行一些配置</p>
+<p> <img src="/images/pch/2.png" alt="image"></p>
+<p> 在上图中的第三步Prefix Header的值进行设置时最好使用<br> <code>$(SRCROOT)/工程名/pch文件名</code><br> 相对路径的书写方法，不要写成绝对路径，如果使用绝对路径会出现一些问题。</p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Pch文件/">.Pch文件</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/12/手写代码UIButton图片和文字位置的设置/" title="手写代码UIButton图片和文字位置的设置" itemprop="url">手写代码UIButton图片和文字位置的设置</a>
   </h1>
   <p class="article-author">By
@@ -99,7 +163,7 @@
 </li>
 </ol>
 <ol>
-<li><p>以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，<code>‘-’加到数字前就是指负向偏移，‘+’是正向偏移</code></p>
+<li><p>以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，<code>‘-’加到数字前就是指负向偏移，‘+’是正向偏移</code>，其实imageEdgeInsets中的第一个数值是对图片对于button上边距的距离，第二个数值是对图片对于button左边距的距离，第三个数值是对图片对于button下边距的距离，第四个数值是对图片对于button的右边距的距离，而titleEdgeInsets的设置类似的。</p>
  <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keepBtn.<span class="variable">imageEdgeInsets =</span> UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, -<span class="number">15</span>);</span><br><span class="line">keepBtn.<span class="variable">titleEdgeInsets =</span> UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 <p> 我所实现的效果图如下：<br> <img src="/images/手写UIButton/20150812.png" alt="image"><br> 具体需要实现什么效果还是需要你自己把握的</p>
 </li>
@@ -200,69 +264,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/03/iOS开发——MD5加密算法/" title="iOS开发——MD5加密算法" itemprop="url">iOS开发——MD5加密算法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-03T05:35:22.000Z" itemprop="datePublished"> 发表于 2015-08-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <ol>
-<li><p>MD5加密算法，实现类别如下：</p>
-<p> 方法一：</p>
- <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import &lt;CommonCrypto/CommonDigest.h&gt;</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">interface</span> <span class="type">NSString</span> (md5)</span><br><span class="line">-(<span class="type">NSString</span> *)md5HexDigest;</span><br><span class="line">@<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#improt "NSString+MD5HexDigest.h"</span></span><br><span class="line"></span><br><span class="line">@implementation <span class="type">NSString</span> (md5)</span><br><span class="line"></span><br><span class="line">- (<span class="type">NSString</span> *)md5HexDigest &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="type">char</span> *original_str = [self <span class="type">UTF8String</span>];</span><br><span class="line">	unsigned <span class="type">char</span> <span class="literal">result</span>[<span class="type">CC_MD5_DIGEST_LENGTH</span>];</span><br><span class="line">	<span class="type">CC_MD5</span>(original_str, strlen(original_str), <span class="literal">result</span>);</span><br><span class="line">	<span class="type">NSMutableString</span> *hash = [<span class="type">NSMutableString</span> <span class="type">string</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">		[hash appendFormat:@<span class="string">"%02X"</span>, <span class="literal">result</span>[i]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> [hash lowercaseString];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p> 方法二：<br> 将字符串进行MD5加密，返回加密后的字符串</p>
- <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import &lt;CommonCrypro/CommonDigest.h&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="type">NSString</span> *)md5WithString:(<span class="type">NSString</span> *)str</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="type">char</span> *cStr = [str <span class="type">UTF8String</span>];</span><br><span class="line">	unsigned <span class="type">char</span> <span class="literal">result</span>[<span class="number">16</span>];</span><br><span class="line">	<span class="type">CC_MD5</span>(cStr, strlen(cStr), <span class="literal">result</span>);// this <span class="keyword">is</span> the md call</span><br><span class="line">	<span class="keyword">return</span> [<span class="type">NSString</span> stringWithFormat:@<span class="string">"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"</span>,  </span><br><span class="line">	<span class="literal">result</span>[<span class="number">0</span>], <span class="literal">result</span>[<span class="number">1</span>], <span class="literal">result</span>[<span class="number">2</span>], <span class="literal">result</span>[<span class="number">3</span>], </span><br><span class="line">       <span class="literal">result</span>[<span class="number">4</span>], <span class="literal">result</span>[<span class="number">5</span>], <span class="literal">result</span>[<span class="number">6</span>], <span class="literal">result</span>[<span class="number">7</span>],</span><br><span class="line">       <span class="literal">result</span>[<span class="number">8</span>], <span class="literal">result</span>[<span class="number">9</span>], <span class="literal">result</span>[<span class="number">10</span>], <span class="literal">result</span>[<span class="number">11</span>],</span><br><span class="line">       <span class="literal">result</span>[<span class="number">12</span>], <span class="literal">result</span>[<span class="number">13</span>], <span class="literal">result</span>[<span class="number">14</span>], <span class="literal">result</span>[<span class="number">15</span>]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <code>注意：</code> MD5是不可逆的只有加密没有解密</p>
-</li>
-</ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/MD5加密/">MD5加密</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -283,7 +284,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
+				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
 			
 		
 			
@@ -307,11 +308,15 @@
 			
 		
 			
-				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
+				<li><a href="/tags/Pch文件/" title=".Pch文件">.Pch文件<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/面向对象思想/" title="面向对象思想">面向对象思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
 			
 		
 			
