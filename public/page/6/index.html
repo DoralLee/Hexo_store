@@ -1,0 +1,432 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Vodka&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Vodka">
+    
+
+    
+    <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vodka's Blog">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:site_name" content="Vodka's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vodka's Blog">
+<meta name="twitter:description">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Vodka&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Vodka&#39;s Blog" title="Vodka&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Vodka&#39;s Blog">Vodka&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/03/10/Hexo——搭建博客/" title="Hexo——搭建博客" itemprop="url">Hexo——搭建博客</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2014-03-10T15:43:59.000Z" itemprop="datePublished"> 发表于 2014-03-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="本地搭建hexo">本地搭建hexo</h3><ol>
+<li><p>安装nvm(node.js的版本管理工具）以下提供两种安装方法</p>
+<ul>
+<li><p>cURL：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>curl <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/creationix</span><span class="regexp">/nvm/v</span><span class="number">0</span>.<span class="number">24.1</span>/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Wget:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/creationix</span><span class="regexp">/nvm/v</span><span class="number">0</span>.<span class="number">24.1</span>/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>安装完成后，重启终端并执行下列命令安装Node.js</p>
+ <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="keyword">install</span> <span class="number">0.10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加如下内容到.zshrc配置文件</p>
+ <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ -s <span class="string">"/Users/<span class="escape">`u</span>sers<span class="escape">`/</span>.nvm/nvm.sh"</span> ] &amp;&amp; . <span class="string">"/Users/<span class="escape">`u</span>sers<span class="escape">`/</span>.nvm/nvm.sh"</span> # This loads nvm</span><br></pre></td></tr></table></figure>
+<p> <code>注意：</code>“users”修改为你的家目录名</p>
+</li>
+<li><p>将nvm的bin目录添加到环境变量中</p>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">以zsh为例：</span><br><span class="line"><span class="number">1</span>. 打开zsh配置文件</span><br><span class="line">	vi ~/<span class="class">.zshrc</span></span><br><span class="line"><span class="number">2</span>. 添加如下内容到<span class="class">.zshrc</span></span><br><span class="line">	export PATH=<span class="variable">$PATH</span>:~/.nvm/v0.<span class="number">10.38</span>/bin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装hexo</p>
+ <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -<span class="keyword">g</span> hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建hexo文件夹，并安装hexo相关组件</p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init hexo</span><br><span class="line"><span class="variable">$ </span>cd hexo</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地查看<br> 输入如下命令后，打开浏览器，并输入<a href="http://0.0.0.0:4000/" target="_blank" rel="external">localhost:4000</a></p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署的时候有时候会失败，可以安装hexo-deployer-git来解决</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="部署到github">部署到github</h3><ol>
+<li><p>注册github账号</p>
+</li>
+<li><p>创建github账号同名repository</p>
+<pre><code>eg:github账号名为leelovcy，则创建leelovcy<span class="class">.github</span><span class="class">.io</span>
+</code></pre></li>
+<li><p>部署到github上</p>
+<p> 如下所示编辑_config.yml</p>
+<pre><code><span class="attribute">deploy</span>:
+  <span class="attribute">type</span>: git
+  <span class="attribute">repository</span>: <span class="attribute">http</span>:<span class="comment">//github.com/LeeLovCY/LeeLovCY.github.io.git</span>
+  <span class="attribute">branch</span>: master
+</code></pre><p> <code>注意：</code>上述冒号之后有空格</p>
+</li>
+<li><p>输入如下命令，完成到github得部署，之后打开浏览器并输入<leelovcy.github.io>来查看</leelovcy.github.io></p>
+ <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo d</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/5/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CocoaPods/" title="CocoaPods">CocoaPods<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/故事一则/" title="故事一则">故事一则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/手写Button设置/" title="手写Button设置">手写Button设置<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MD5加密/" title="MD5加密">MD5加密<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Quartz2D使用/" title="Quartz2D使用">Quartz2D使用<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/viewController生命周期/" title="viewController生命周期">viewController生命周期<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pch文件/" title=".Pch文件">.Pch文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面向对象思想/" title="面向对象思想">面向对象思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ToolBar/" title="ToolBar">ToolBar<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NavController-UIButtonItem/" title="NavController-UIButtonItem">NavController-UIButtonItem<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SVN/" title="SVN">SVN<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数组排序/" title="数组排序">数组排序<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.code4app.com" target="_blank" title="第三方源码">Code4APP</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cocoachina.com" target="_blank" title="CocoaChina">CocoaChina</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.stackoverflow.com" target="_blank" title="StackOverFlow">StackOverFlow</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Vodka. <br/>
+			This is my blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/LeeLovCY" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="Vodka">Vodka</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

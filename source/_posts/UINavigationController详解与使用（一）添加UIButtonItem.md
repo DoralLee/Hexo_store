@@ -1,5 +1,5 @@
 title: "UINavigationController详解与使用（一）添加UIButtonItem"
-date: 2015-04-17 16:39:03
+date: 2014-04-17 16:39:03
 tags: NavController-UIButtonItem
 ---
 

@@ -1,0 +1,496 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>手写代码UIButton图片和文字位置的设置 | Vodka&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Vodka">
+    
+
+    
+    <meta name="description" content="首先对button的初始化，以及图片和文字的设置
+ 1234567891011121314151617181920212223242526//添加放弃和留下按钮   UIButton *dropBtn = [UIButton buttonWithType:UIButtonTypeCustom];   dropBtn.frame = CGRectMake(1*WIDHT/5, getViewHeig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写代码UIButton图片和文字位置的设置">
+<meta property="og:url" content="http://yoursite.com/2014/08/12/手写代码UIButton图片和文字位置的设置/index.html">
+<meta property="og:site_name" content="Vodka's Blog">
+<meta property="og:description" content="首先对button的初始化，以及图片和文字的设置
+ 1234567891011121314151617181920212223242526//添加放弃和留下按钮   UIButton *dropBtn = [UIButton buttonWithType:UIButtonTypeCustom];   dropBtn.frame = CGRectMake(1*WIDHT/5, getViewHeig">
+<meta property="og:image" content="/images/手写UIButton/20150812.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手写代码UIButton图片和文字位置的设置">
+<meta name="twitter:description" content="首先对button的初始化，以及图片和文字的设置
+ 1234567891011121314151617181920212223242526//添加放弃和留下按钮   UIButton *dropBtn = [UIButton buttonWithType:UIButtonTypeCustom];   dropBtn.frame = CGRectMake(1*WIDHT/5, getViewHeig">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Vodka&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Vodka&#39;s Blog" title="Vodka&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Vodka&#39;s Blog">Vodka&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/08/12/手写代码UIButton图片和文字位置的设置/" title="手写代码UIButton图片和文字位置的设置" itemprop="url">手写代码UIButton图片和文字位置的设置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="Vodka" target="_blank" itemprop="author">Vodka</a>
+		
+  <p class="article-time">
+    <time datetime="2014-08-12T05:39:25.000Z" itemprop="datePublished"> 发表于 2014-08-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ol>
+<li><p>首先对button的初始化，以及图片和文字的设置</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加放弃和留下按钮</span></span><br><span class="line">   UIButton *dropBtn = [UIButton <span class="string">buttonWithType:</span>UIButtonTypeCustom];</span><br><span class="line">   dropBtn.frame = CGRectMake(<span class="number">1</span>*WIDHT/<span class="number">5</span>, getViewHeight(foodNameLabel)+<span class="number">50</span>, <span class="number">60</span>, <span class="number">60</span>);</span><br><span class="line">   [dropBtn <span class="string">setImage:</span>[UIImage <span class="string">imageNamed:</span>@<span class="string">"icon_No@2x.png"</span>] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line"></span><br><span class="line">   dropBtn.titleLabel.font = [UIFont <span class="string">systemFontOfSize:</span><span class="number">15</span>];</span><br><span class="line">   [dropBtn <span class="string">setTitleColor:</span>[UIColor blackColor] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   [dropBtn <span class="string">setTitle:</span>@<span class="string">"放弃"</span> <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   dropBtn.imageEdgeInsets = UIEdgeInsetsMake(<span class="number">0</span>, -<span class="number">15</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   dropBtn.titleEdgeInsets = UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">5</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   [dropBtn <span class="string">addTarget:</span>self <span class="string">action:</span><span class="annotation">@selector</span>(<span class="string">dropAction:</span>) <span class="string">forControlEvents:</span>UIControlEventTouchUpInside];</span><br><span class="line">   </span><br><span class="line">   [self.view <span class="string">addSubview:</span>dropBtn];</span><br><span class="line">   </span><br><span class="line">   UIButton *keepBtn = [UIButton <span class="string">buttonWithType:</span>UIButtonTypeCustom];</span><br><span class="line">   keepBtn.frame = CGRectMake(WIDHT - <span class="number">1</span>*WIDHT/<span class="number">5</span> - <span class="number">60</span>, getViewHeight(foodNameLabel)+<span class="number">50</span>, <span class="number">60</span>, <span class="number">60</span>);</span><br><span class="line">   [keepBtn <span class="string">setImage:</span>[UIImage <span class="string">imageNamed:</span>@<span class="string">"icon_OK@2x.png"</span>] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   </span><br><span class="line">   keepBtn.titleLabel.font = [UIFont <span class="string">systemFontOfSize:</span><span class="number">15</span>];</span><br><span class="line">   [keepBtn <span class="string">setTitleColor:</span>[UIColor blackColor] <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   [keepBtn <span class="string">setTitle:</span>@<span class="string">"留下"</span> <span class="string">forState:</span>UIControlStateNormal];</span><br><span class="line">   keepBtn.imageEdgeInsets = UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, -<span class="number">15</span>);</span><br><span class="line">   keepBtn.titleEdgeInsets = UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">   [keepBtn <span class="string">addTarget:</span>self <span class="string">action:</span><span class="annotation">@selector</span>(<span class="string">keepAction:</span>) <span class="string">forControlEvents:</span>UIControlEventTouchUpInside];</span><br><span class="line">   </span><br><span class="line">   [self.view <span class="string">addSubview:</span>keepBtn];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>以上就是所有代码，其中下列代码是对图片和文字位置的设置，UIEdgeInsets属性就上左下右的顺序设置，<code>‘-’加到数字前就是指负向偏移，‘+’是正向偏移</code>，其实imageEdgeInsets中的第一个数值是对图片对于button上边距的距离，第二个数值是对图片对于button左边距的距离，第三个数值是对图片对于button下边距的距离，第四个数值是对图片对于button的右边距的距离，而titleEdgeInsets的设置类似的。</p>
+ <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keepBtn.<span class="variable">imageEdgeInsets =</span> UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, -<span class="number">15</span>);</span><br><span class="line">keepBtn.<span class="variable">titleEdgeInsets =</span> UIEdgeInsetsMake( <span class="number">0</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p> 我所实现的效果图如下：<br> <img src="/images/手写UIButton/20150812.png" alt="image"><br> 具体需要实现什么效果还是需要你自己把握的</p>
+</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/手写Button设置/">手写Button设置</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2014/08/12/手写代码UIButton图片和文字位置的设置/" data-title="手写代码UIButton图片和文字位置的设置 | Vodka&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/08/iOS-Pch文件的使用/" title="iOS--Pch文件的使用">
+  <strong>上一篇：</strong><br/>
+  <span>
+  iOS--Pch文件的使用</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/08/12/Xcode已安装插件的删除/"  title="Xcode已安装插件的删除">
+ <strong>下一篇：</strong><br/> 
+ <span>Xcode已安装插件的删除
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Xcode插件删除/" title="Xcode插件删除">Xcode插件删除<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CocoaPods/" title="CocoaPods">CocoaPods<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/故事一则/" title="故事一则">故事一则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/手写Button设置/" title="手写Button设置">手写Button设置<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MD5加密/" title="MD5加密">MD5加密<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Quartz2D使用/" title="Quartz2D使用">Quartz2D使用<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/viewController生命周期/" title="viewController生命周期">viewController生命周期<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pch文件/" title=".Pch文件">.Pch文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面向对象思想/" title="面向对象思想">面向对象思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XML-JSON/" title="XML&amp;JSON">XML&amp;JSON<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ToolBar/" title="ToolBar">ToolBar<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NavController-UIButtonItem/" title="NavController-UIButtonItem">NavController-UIButtonItem<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SVN/" title="SVN">SVN<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数组排序/" title="数组排序">数组排序<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.code4app.com" target="_blank" title="第三方源码">Code4APP</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cocoachina.com" target="_blank" title="CocoaChina">CocoaChina</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.stackoverflow.com" target="_blank" title="StackOverFlow">StackOverFlow</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Vodka. <br/>
+			This is my blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/LeeLovCY" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="Vodka">Vodka</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

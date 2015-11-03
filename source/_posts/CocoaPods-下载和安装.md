@@ -1,5 +1,5 @@
 title: "CocoaPods 下载和安装"
-date: 2015-05-25 15:02:45
+date: 2014-05-25 15:02:45
 tags: CocoaPods
 ---
 
